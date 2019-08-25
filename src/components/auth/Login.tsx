@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   EuiPage,
@@ -9,16 +9,12 @@ import {
   EuiSpacer,
   EuiFieldText
 } from '@elastic/eui';
+import { useFormInput } from './hooks';
 
 function Login() {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setPassword(event.target.value);
-  }
-  function onEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value);
-  }
+  const password = useFormInput('');
+  const email = useFormInput('');
+
   return (
     <EuiPage>
       <EuiPageBody>
@@ -26,16 +22,14 @@ function Login() {
           <EuiPageContentBody>
             <EuiFieldText
               placeholder="Enter your username or email here "
-              value={email}
-              onChange={onEmailChange}
-              aria-label="Use aria labels when no actual label is in use"
+              {...email}
+              aria-label="email"
             />
             <EuiSpacer size="m" />
             <EuiFieldPassword
               placeholder="Enter your password here"
-              value={password}
-              onChange={onChange}
-              aria-label="Use aria labels when no actual label is in use"
+              {...password}
+              aria-label="Password"
             />
           </EuiPageContentBody>
         </EuiPageContent>

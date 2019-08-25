@@ -33,26 +33,26 @@ function Register() {
             <EuiFieldText
               placeholder="Enter your name here "
               {...name}
-              aria-label="Use aria labels when no actual label is in use"
+              aria-label="Name"
             />
             <EuiSpacer size="m" />
             <EuiFieldText
               placeholder="Enter your username or email here "
               {...email}
-              aria-label="Use aria labels when no actual label is in use"
+              aria-label="Email"
             />
             <EuiSpacer size="m" />
             <EuiFieldPassword
               placeholder="Enter your password here"
               {...password}
-              aria-label="Use aria labels when no actual label is in use"
+              aria-label="Password"
             />
             <EuiSpacer size="m" />
             <EuiSelect
               options={genderOptions}
               value={gender}
               onChange={handleGenderChange}
-              aria-label="Use aria labels when no actual label is in use"
+              aria-label="Gender"
             />
           </EuiPageContentBody>
         </EuiPageContent>
