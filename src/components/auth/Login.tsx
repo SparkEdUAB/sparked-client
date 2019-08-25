@@ -6,7 +6,8 @@ import {
   EuiPageContent,
   EuiPageContentBody,
   EuiFieldPassword,
-  EuiSpacer
+  EuiSpacer,
+  EuiFieldText
 } from '@elastic/eui';
 
 function Login() {
@@ -23,7 +24,7 @@ function Login() {
       <EuiPageBody>
         <EuiPageContent verticalPosition="center" horizontalPosition="center">
           <EuiPageContentBody>
-            <EuiFieldPassword
+            <EuiFieldText
               placeholder="Enter your username or email here "
               value={email}
               onChange={onEmailChange}
