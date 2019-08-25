@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Pages/Home';
 import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 
 // todo: Find a way to dynamically change these styles
 const isDark = true;
@@ -17,6 +18,7 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
       </Switch>
     </BrowserRouter>
   );
