@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Pages/Home';
 
+// todo: Find a way to dynamically change these styles
 const isDark = true;
 if (isDark) {
   require('@elastic/eui/dist/eui_theme_dark.css');
