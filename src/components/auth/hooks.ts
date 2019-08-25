@@ -17,3 +17,12 @@ export function useFormInput(initialValue: string) {
     onChange: handleChange
   };
 }
+
+export function useLoading(loadingState: boolean) {
+  const [value, setIsLoading] = useState(loadingState);
+
+  return {
+    value,
+    setIsLoading
+  };
+}
