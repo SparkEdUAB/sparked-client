@@ -41,18 +41,23 @@ class SimpleSidebar extends React.Component {
             />
             <SidebarItem
               //   icon={<img src={application} />}
-              name="Aplications"
-              label="Aplications"
+              name="Users"
+              label="Users"
             />
             <SidebarItem
               //   icon={<img src={puzzle} />}
-              name="Components"
-              label="Components"
+              name="Courses"
+              label="Courses"
             />
             <SidebarItem
-              //   icon={<img src={messages} />}
-              name="Messages"
-              label="Messages"
+              //   icon={<img src={References} />}
+              name="References"
+              label="References"
+            />
+            <SidebarItem
+              //   icon={<img src={References} />}
+              name="Settings"
+              label="Settings"
             />
             <SidebarItem name="Charts" label="Charts" />
           </Sidebar>
