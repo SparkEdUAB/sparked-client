@@ -1,6 +1,7 @@
 import React from "react";
 import { Sidebar, SidebarItem } from "react-rainbow-components";
 import dashboard from "../assets/dashboard.svg";
+import Header from '../../core/component/Header'
 import "../styles/styles.css";
 
 const sidebarContainerStyles = {
@@ -26,6 +27,7 @@ class SimpleSidebar extends React.Component {
 
     return (
       <div className="">
+          <Header />
         <div className="sidenav">
           <Sidebar
             selectedItem={selectedItem}

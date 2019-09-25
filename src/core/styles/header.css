@@ -1,0 +1,92 @@
+.react-rainbow-admin_header {
+  top: 0;
+  left: 0;
+  height: 68px;
+  width: 100vw;
+  z-index: 10000;
+  border-bottom: 1px solid #f4f6f9;
+}
+
+.react-rainbow-admin_header-logo {
+  width: 36px;
+  height: 36px;
+}
+
+.react-rainbow-admin_header-search {
+  width: 280px;
+}
+
+.react-rainbow-admin_header-actions {
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.react-rainbow-admin_header--notification-icon-container {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  background-color: #e3e5ed;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-rainbow-admin_header--notification-icon {
+  height: 12px;
+}
+
+.react-rainbow-admin_header-hamburger-button {
+  display: none;
+}
+
+.react-rainbow-admin_header-github-icon {
+  width: 32px;
+  height: 32px;
+  fill: #576574;
+}
+
+.react-rainbow-admin_header-github-icon:hover {
+  fill: #061c3f;
+}
+
+@media (max-width: 600px) {
+  .react-rainbow-admin_header {
+    height: 124px;
+    padding: 16px 16px 0 16px;
+    align-items: flex-start;
+  }
+
+  .react-rainbow-admin_header-search {
+    margin: 0;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 12px;
+    width: calc(100% - 80px);
+  }
+
+  .react-rainbow-admin_header-actions {
+    align-items: flex-start;
+  }
+
+  .react-rainbow-admin_header-hamburger-button {
+    display: inherit;
+    height: 40px;
+    width: 40px;
+    margin-left: 16px;
+  }
+
+  .react-rainbow-admin_header-button-notification {
+    margin: 0 8px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 12px;
+    right: 4px;
+  }
+
+  .react-rainbow-admin_header-github-icon {
+    margin-right: 16px;
+  }
+}
