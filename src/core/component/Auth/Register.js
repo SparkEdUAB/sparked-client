@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button } from "react-rainbow-components";
+import { Input, Button, CheckboxToggle } from "react-rainbow-components";
 import "../../styles/styles.css";
 
 function Register() {
@@ -7,7 +7,7 @@ function Register() {
     width: 300
   };
 
-  
+
   return (
     <div className="register-page">
       <div className="rainbow-m-vertical_x-large rainbow-m_auto">
@@ -34,18 +34,14 @@ function Register() {
           />
           <br />
 
-          <Input
-            className="rainbow-m-around_medium"
-            type="radio"
-            label="Female"
-            style={inputStyles}
-          />
-          <Input
-            className="rainbow-m-around_medium"
-            type="radio"
-            label="Male"
-            style={inputStyles}
-          />
+               <CheckboxToggle
+                id="checkbox-toggle-component-1"
+                label="Toggle Label"
+                value={true}
+                // onChange={this.handleOnChange}
+            />
+          <br />
+          <br />
           <Button
             isLoading={false}
             label="Register"

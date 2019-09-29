@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { IoMdMore } from 'react-icons'
-import { GlobalHeader, Pagination, Spinner, Table, Column, MenuItem, Badge } from 'react-rainbow-components'
+import { Card, Pagination, Spinner, Table, Column, MenuItem, Badge } from 'react-rainbow-components'
 import GET_COURSES from '../queries/courses'
+import '../styles/styles.css'
 
 
 const badgeStyles = { color: '#1de9b6' };
@@ -25,7 +25,7 @@ function CoursesList() {
         </div>
     )
 
-    if (error) return <p>Error :(</p>;
+    if (error) return <ErrorPage />;
 
     function renderCourses() {
         const lastItem = activePage * itemsPerPage;
@@ -53,6 +53,28 @@ function CoursesList() {
         </div>
     )
 }
+
+function ErrorPage() {
+    return (
+        <div className="rainbow-m-around_large " >
+            <Card
+                title="Error Page"
+                style={{
+                    height: '85vh'
+                }}
+
+            >
+                <div className=" center-page rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
+                    <span role="img" aria-label="sad emoji">😞</span>
+                    <h1 className="rainbow-p-top_large rainbow-font-size-heading_small rainbow-color_dark-1">
+                        There was an error fetching the data
+            </h1>
+                </div>
+            </Card>
+        </div>
+    )
+}
+
 export default CoursesList
 
 

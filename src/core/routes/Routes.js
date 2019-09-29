@@ -11,7 +11,7 @@ function Routes(){
 
             <Route path='/admin/' component={AdminRoutes} />
             <Route exact path='/register' component={Register} />
-            <Redirect from='/' to='/admin/overview' />
+            {/* <Redirect from='/' to='/admin/overview' /> */}
             <Route component={() => <h5> Not found page</h5>} />
         </Switch>
         </BrowserRouter>
