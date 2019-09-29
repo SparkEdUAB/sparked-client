@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar, SidebarItem } from "react-rainbow-components";
-import { IoIosPeople } from "react-icons/io";
+import { IoIosPeople, IoMdBook, IoIosAlbums, IoIosSettings, IoIosPodium } from "react-icons/io";
 
 import dashboard from "../assets/dashboard.svg";
 import Header from '../../core/component/Header'
@@ -41,27 +41,30 @@ class SimpleSidebar extends React.Component {
               name="Dashboard"
               label="Dashboard"
             />
+            
             <SidebarItem
                 icon={<IoIosPeople size={'2em'} />}
               name="Users"
               label="Users"
             />
             <SidebarItem
-              //   icon={<img src={puzzle} />}
-              name="Courses"
-              label="Courses"
-            />
+                icon={<IoMdBook size={'2em'} />}
+                name="Courses"
+                label="Courses"
+                />
             <SidebarItem
-              //   icon={<img src={References} />}
-              name="References"
-              label="References"
-            />
+                icon={<IoIosAlbums size={'2em'} />}
+                name="References"
+                label="References"
+                />
             <SidebarItem
-              //   icon={<img src={References} />}
-              name="Settings"
-              label="Settings"
-            />
-            <SidebarItem name="Charts" label="Charts" />
+                icon={<IoIosSettings size={'2em'} />}
+                name="Settings"
+                label="Settings"
+                />
+            <SidebarItem name="Charts" label="Charts"
+                icon={<IoIosPodium size={'2em'} />}
+             />
           </Sidebar>
         </div>
         <div className="main">Main</div>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ButtonGroup from "react-rainbow-components/components/ButtonGroup";
+import { IoMdNotifications, IoMdMenu } from "react-icons/io";
 import ButtonIcon from "react-rainbow-components/components/ButtonIcon";
 import AvatarMenu from "react-rainbow-components/components/AvatarMenu";
 import Avatar from "react-rainbow-components/components/Avatar";
@@ -28,6 +28,7 @@ export default function SectionHeading({ onToogleSidebar }) {
           menuAlignment="right"
           buttonVariant="base"
           buttonSize="large"
+          icon={<IoMdNotifications />}
         >
           <MenuItem label="Notifications (2)" variant="header" />
           {/* <MenuItem
@@ -40,7 +41,8 @@ export default function SectionHeading({ onToogleSidebar }) {
             }
             label={<Notification title="Your order is placed" />}
           />
-          <MenuItem
+          */}
+          {/* <MenuItem
             icon={
               <IconNotification
                 icon={
@@ -49,7 +51,7 @@ export default function SectionHeading({ onToogleSidebar }) {
               />
             }
             label={<Notification title="New messages" />}
-          /> */}
+          />  */}
         </ButtonMenu>
         <AvatarMenu
           src="/assets/images/user2.jpg"
@@ -91,7 +93,7 @@ export default function SectionHeading({ onToogleSidebar }) {
         onClick={onToogleSidebar}
         className="react-rainbow-admin_header-hamburger-button"
         size="large"
-        // icon={<BarsIcon />}
+        icon={<IoMdMenu />}
       />
     </header>
   );
