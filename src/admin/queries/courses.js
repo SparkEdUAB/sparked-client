@@ -1,14 +1,14 @@
-import { gql } from 'apollo-boost';
+import { gql } from 'apollo-boost'
 
 export default gql`
-{
-  getCourses {
-    name
-    createdAt
-    topics{
+  {
+    getCourses {
       name
+      createdAt
+      topics {
+        name
+      }
+      createdBy
     }
-    createdBy
   }
-}
-`;
+`
