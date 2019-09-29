@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar, SidebarItem } from "react-rainbow-components";
-import { IoIosPeople, IoMdBook, IoIosAlbums, IoIosSettings, IoIosPodium } from "react-icons/io";
+import { IoIosPeople, IoMdBook, IoMdApps, IoIosAlbums, IoIosSettings, IoIosPodium } from "react-icons/io";
 
 import dashboard from "../assets/dashboard.svg";
 import Header from '../../core/component/Header'
@@ -37,7 +37,7 @@ class SimpleSidebar extends React.Component {
             id="sidebar-1"
           >
             <SidebarItem
-              icon={<img src={dashboard} alt="dashboard icon"/>}
+              icon={<IoMdApps size={'2em'} />}
               name="Dashboard"
               label="Dashboard"
             />
