@@ -6,6 +6,8 @@ function Register() {
   const inputStyles = {
     width: 300
   };
+
+  
   return (
     <div className="register-page">
       <div className="rainbow-m-vertical_x-large rainbow-m_auto">

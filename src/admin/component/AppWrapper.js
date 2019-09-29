@@ -51,6 +51,8 @@ class AppWrapper extends React.Component {
                 icon={<IoMdBook size={'2em'} />}
                 name="Courses"
                 label="Courses"
+                onClick={() => this.props.history.push('/admin/courses')}
+
               />
               <SidebarItem
                 icon={<IoIosAlbums size={'2em'} />}
