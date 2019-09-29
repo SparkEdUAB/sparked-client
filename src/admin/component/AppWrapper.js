@@ -5,10 +5,6 @@ import { withRouter } from 'react-router-dom'
 import Header from '../../core/component/Header'
 import "../styles/styles.css";
 
-const sidebarContainerStyles = {
-  width: "88px",
-  borderBottomLeftRadius: "0.875rem"
-};
 
 class AppWrapper extends React.Component {
   constructor(props) {
