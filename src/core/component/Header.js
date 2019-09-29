@@ -55,7 +55,7 @@ function SectionHeading({ onToogleSidebar }) {
           />  */}
         </ButtonMenu>
         <AvatarMenu
-          src="/assets/images/user2.jpg"
+            icon={<IoIosPerson size={"2em"}/>}
           assistiveText="Tahimi Leon"
           menuAlignment="right"
           menuSize="small"
@@ -63,10 +63,10 @@ function SectionHeading({ onToogleSidebar }) {
         >
           <li className="rainbow-p-horizontal_small rainbow-align_center rainbow-flex">
             <Avatar
-              src="/assets/images/user2.jpg"
               assistiveText="Tahimi Leon"
               title="Tahimi Leon"
               size="medium"
+              icon={<IoIosPerson size={"2em"}/>}
             />
             <div className="rainbow-m-left_x-small">
               <p className="rainbow-font-size-text_medium rainbow-color_dark-1">
