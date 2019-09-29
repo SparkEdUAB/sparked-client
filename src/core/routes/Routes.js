@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Register from '../component/Auth/Register'
 import AdminRoutes from '../../admin/routes/AdminRoutes'
+import Page404 from '../component/utils/404Page'
 
 function Routes() {
     return (
@@ -9,7 +10,7 @@ function Routes() {
             <Switch>
                 <Route path='/admin/' component={AdminRoutes} />
                 <Route exact path='/register' component={Register} />
-                <Route component={() => <h5> Not found page</h5>} />
+                <Route component={Page404} />
             </Switch>
         </BrowserRouter>
     )

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { Pagination, Spinner, Table, Column, MenuItem, Badge } from 'react-rainbow-components'
 import GET_COURSES from '../queries/courses'
-import ErrorPage from './utils/ErrorPage'
+import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 
 
