@@ -47,7 +47,7 @@ function Register() {
           <Button
             isLoading={false}
             label="Register"
-            variant="outline-brand"
+            variant="brand"
             className="rainbow-m-around_medium"
           />
         </div>
