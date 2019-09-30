@@ -1,15 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { IoMdNotifications, IoMdMenu, IoIosLogOut, IoIosPerson } from "react-icons/io";
-import ButtonIcon from "react-rainbow-components/components/ButtonIcon";
-import AvatarMenu from "react-rainbow-components/components/AvatarMenu";
-import Avatar from "react-rainbow-components/components/Avatar";
-import Input from "react-rainbow-components/components/Input";
-import MenuItem from "react-rainbow-components/components/MenuItem";
-import MenuDivider from "react-rainbow-components/components/MenuDivider";
-import ButtonMenu from "react-rainbow-components/components/ButtonMenu";
-import "../styles/header.css";
+import {
+  IoMdNotifications,
+  IoMdMenu,
+  IoIosLogOut,
+  IoIosPerson,
+} from 'react-icons/io'
+import ButtonIcon from 'react-rainbow-components/components/ButtonIcon'
+import AvatarMenu from 'react-rainbow-components/components/AvatarMenu'
+import Avatar from 'react-rainbow-components/components/Avatar'
+import Input from 'react-rainbow-components/components/Input'
+import MenuItem from 'react-rainbow-components/components/MenuItem'
+import MenuDivider from 'react-rainbow-components/components/MenuDivider'
+import ButtonMenu from 'react-rainbow-components/components/ButtonMenu'
+import '../styles/header.css'
 
 function SectionHeading({ onToogleSidebar }) {
   return (
@@ -20,10 +25,8 @@ function SectionHeading({ onToogleSidebar }) {
         placeholder="search"
         label="header search"
         hideLabel
-
       />
       <section className="rainbow-flex rainbow-align_center react-rainbow-admin_header-actions">
-
         <ButtonMenu
           className="rainbow-m-horizontal_medium react-rainbow-admin_header-button-notification"
           menuAlignment="right"
@@ -55,7 +58,7 @@ function SectionHeading({ onToogleSidebar }) {
           />  */}
         </ButtonMenu>
         <AvatarMenu
-            icon={<IoIosPerson size={"2em"}/>}
+          icon={<IoIosPerson size={'2em'} />}
           assistiveText="Tahimi Leon"
           menuAlignment="right"
           menuSize="small"
@@ -66,7 +69,7 @@ function SectionHeading({ onToogleSidebar }) {
               assistiveText="Tahimi Leon"
               title="Tahimi Leon"
               size="medium"
-              icon={<IoIosPerson size={"2em"}/>}
+              icon={<IoIosPerson size={'2em'} />}
             />
             <div className="rainbow-m-left_x-small">
               <p className="rainbow-font-size-text_medium rainbow-color_dark-1">
@@ -83,7 +86,7 @@ function SectionHeading({ onToogleSidebar }) {
             icon={<IoIosPerson />}
             iconPosition="left"
           />
-          <Link to='/register'>
+          <Link to="/register">
             <MenuItem
               label="Logout"
               icon={<IoIosLogOut />}
@@ -99,14 +102,14 @@ function SectionHeading({ onToogleSidebar }) {
         icon={<IoMdMenu />}
       />
     </header>
-  );
+  )
 }
 
 SectionHeading.propTypes = {
-  onToogleSidebar: PropTypes.func
-};
+  onToogleSidebar: PropTypes.func,
+}
 
 SectionHeading.defaultProps = {
-  onToogleSidebar: () => { }
-};
+  onToogleSidebar: () => {},
+}
 export default SectionHeading

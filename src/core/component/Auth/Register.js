@@ -1,11 +1,12 @@
-import React from "react";
-import { Input, Button } from "react-rainbow-components";
-import "../../styles/styles.css";
+import React from 'react'
+import { Input, Button, CheckboxToggle } from 'react-rainbow-components'
+import '../../styles/styles.css'
 
 function Register() {
   const inputStyles = {
-    width: 300
-  };
+    width: 300,
+  }
+
   return (
     <div className="register-page">
       <div className="rainbow-m-vertical_x-large rainbow-m_auto">
@@ -32,18 +33,14 @@ function Register() {
           />
           <br />
 
-          <Input
-            className="rainbow-m-around_medium"
-            type="radio"
-            label="Female"
-            style={inputStyles}
+          <CheckboxToggle
+            id="checkbox-toggle-component-1"
+            label="Toggle Label"
+            value={true}
+            // onChange={this.handleOnChange}
           />
-          <Input
-            className="rainbow-m-around_medium"
-            type="radio"
-            label="Male"
-            style={inputStyles}
-          />
+          <br />
+          <br />
           <Button
             isLoading={false}
             label="Register"
@@ -53,6 +50,6 @@ function Register() {
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default Register;
+export default Register
