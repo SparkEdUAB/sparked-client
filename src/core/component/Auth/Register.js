@@ -9,14 +9,16 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState(false)
+  const [isLoading, setLoading] = useState(false)
   const [register, { data }] = useMutation(RegisterMutation)
 
   const inputStyles = {
-    width: 300,
+    width: 400,
   }
-  function handleRegister() {
-    // register the user here
-    register({ variables: { name, email, password, gender } })
+  async function handleRegister() {
+    setLoading(true)
+    await register({ variables: { name, email, password, gender } })
+    setLoading(false)
     console.log(data)
   }
 
@@ -59,7 +61,7 @@ function Register() {
             onChange={() => setGender(gender ? 'male' : 'female')}
           />
           <Button
-            isLoading={false}
+            isLoading={isLoading}
             label="Register"
             variant="brand"
             className="rainbow-m-around_medium"
