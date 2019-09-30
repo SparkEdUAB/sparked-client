@@ -31,7 +31,7 @@ function CoursesList() {
     setActivePage(page)
   }
 
-  if (loading)
+  if (loading) {
     return (
       <div className="rainbow-p-vertical_xx-large">
         <div className="rainbow-position_relative rainbow-m-vertical_xx-large rainbow-p-vertical_xx-large">
@@ -39,6 +39,7 @@ function CoursesList() {
         </div>
       </div>
     )
+  }
 
   if (error) return <ErrorPage />
 
@@ -48,6 +49,9 @@ function CoursesList() {
   }
   function handleOnClose() {
     setModal(false)
+  }
+  function handleOnDelete() {
+    // handle the deleting here
   }
 
   return (
@@ -79,7 +83,7 @@ function CoursesList() {
           <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
           <MenuItem
             label="Delete"
-            onClick={(e, data) => console.log(`Delete ${data.name}`)}
+            onClick={(e, data) => handleOnDelete(data._id)}
           />
         </Column>
       </Table>
