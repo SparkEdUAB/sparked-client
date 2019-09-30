@@ -7,6 +7,9 @@ import {
   Column,
   MenuItem,
   Badge,
+  Modal,
+  Input,
+  Button,
 } from 'react-rainbow-components'
 import GET_COURSES from '../queries/courses'
 import ErrorPage from '../../core/component/utils/ErrorPage'
@@ -20,6 +23,8 @@ const StatusBadge = ({ value }) => (
 function CoursesList() {
   const { loading, data, error } = useQuery(GET_COURSES)
   const [activePage, setActivePage] = useState(1)
+  const [isOpen, setModal] = useState(false)
+  const [name, setName] = useState('')
   const itemsPerPage = 10
 
   function handleOnChange(event, page) {
@@ -37,23 +42,41 @@ function CoursesList() {
 
   if (error) return <ErrorPage />
 
-  function renderCourses() {
-    const lastItem = activePage * itemsPerPage
-    const firstItem = lastItem - itemsPerPage
-    return data.getCourses.slice(firstItem, lastItem)
+  function handleOnClick(data) {
+    setModal(true)
+    setName(data.name)
   }
+  function handleOnClose() {
+    setModal(false)
+  }
+
   return (
     <div className="rainbow-p-bottom_xx-large">
-      <Table keyField="id" data={renderCourses()}>
+      <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
+        <Input
+          placeholder="Enter your name"
+          type="text"
+          className="rainbow-p-around_medium"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <Button
+          isLoading={false}
+          label="update"
+          variant="outline-brand"
+          className="rainbow-m-around_medium"
+        />
+      </Modal>
+      <Table
+        keyField="_id"
+        data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
+      >
         <Column header="Name" field="name" />
         <Column header="created At" field="createdAt" component={StatusBadge} />
         <Column header="created By" field="createdBy" />
         {/* <Column header="Email" field="email" /> */}
         <Column type="action">
-          <MenuItem
-            label="Edit"
-            onClick={(e, data) => console.log(`Edit ${data.name}`)}
-          />
+          <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
           <MenuItem
             label="Delete"
             onClick={(e, data) => console.log(`Delete ${data.name}`)}
@@ -70,4 +93,9 @@ function CoursesList() {
   )
 }
 
+function renderPaginatedData(data, activePage, itemsPerPage) {
+  const lastItem = activePage * itemsPerPage
+  const firstItem = lastItem - itemsPerPage
+  return data.slice(firstItem, lastItem)
+}
 export default CoursesList
