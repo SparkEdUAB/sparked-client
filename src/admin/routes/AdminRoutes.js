@@ -17,10 +17,9 @@ export default function AdminRoutes() {
             component={() => <h4>Overview</h4>}
           />
           <Route exact path="/admin/users" component={() => <h4>Users</h4>} />
-          {/* <Route exact path="/admin/courses" component={CoursesList} /> */}
           <PrivateRoute
             exact
-            authed={token ? true : false}
+            isLoggedIn={token ? true : false}
             path="/admin/courses"
             component={CoursesList}
           />

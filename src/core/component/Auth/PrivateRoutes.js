@@ -3,14 +3,14 @@ import { Redirect, Route } from 'react-router-dom'
 
 export default function PrivateRoute({
   component: Component,
-  authed,
+  isLoggedIn,
   ...rest
 }) {
   return (
     <Route
       {...rest}
       render={props =>
-        authed === true ? (
+        isLoggedIn === true ? (
           <Component {...props} />
         ) : (
           <Redirect
