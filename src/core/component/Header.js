@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {
   IoMdNotifications,
   IoMdMenu,
@@ -16,7 +16,7 @@ import MenuDivider from 'react-rainbow-components/components/MenuDivider'
 import ButtonMenu from 'react-rainbow-components/components/ButtonMenu'
 import '../styles/header.css'
 
-function SectionHeading({ onToogleSidebar }) {
+function SectionHeading({ onToogleSidebar, history }) {
   return (
     <header className="react-rainbow-admin_header rainbow-position_fixed rainbow-flex rainbow-align_center rainbow-p-horizontal_large rainbow-background-color_white">
       <h3>SparkEd</h3>
@@ -86,13 +86,15 @@ function SectionHeading({ onToogleSidebar }) {
             icon={<IoIosPerson />}
             iconPosition="left"
           />
-          <Link to="/register">
-            <MenuItem
-              label="Logout"
-              icon={<IoIosLogOut />}
-              iconPosition="left"
-            />
-          </Link>
+          <MenuItem
+            label="Logout"
+            icon={<IoIosLogOut />}
+            iconPosition="left"
+            onClick={() => {
+              localStorage.removeItem('token')
+              history.push('/login')
+            }}
+          />
         </AvatarMenu>
       </section>
       <ButtonIcon
@@ -112,4 +114,4 @@ SectionHeading.propTypes = {
 SectionHeading.defaultProps = {
   onToogleSidebar: () => {},
 }
-export default SectionHeading
+export default withRouter(SectionHeading)
