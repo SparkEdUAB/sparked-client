@@ -92,7 +92,7 @@ function SectionHeading({ onToogleSidebar, history }) {
             iconPosition="left"
             onClick={() => {
               localStorage.removeItem('token')
-              history.push('/login')
+              return (window.location.href = '/login')
             }}
           />
         </AvatarMenu>
