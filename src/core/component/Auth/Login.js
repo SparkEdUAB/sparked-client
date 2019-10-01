@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
+import { Redirect } from 'react-router-dom'
 import LoginMutation from '../../queries/loginMutation'
 import '../../styles/styles.css'
 
@@ -8,6 +9,7 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setLoading] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [login] = useMutation(LoginMutation)
 
   const inputStyles = {
@@ -15,12 +17,18 @@ function Login() {
   }
   function handleLogin() {
     setLoading(true)
-    login({ variables: { email, password } }).then(data => {
-      localStorage.setItem('token', data.data.login)
-      setLoading(false)
-    })
+    login({ variables: { email, password } })
+      .then(data => {
+        localStorage.setItem('token', data.data.login)
+      })
+      .then(() => {
+        setLoading(false)
+        setIsLoggedIn(true)
+      })
   }
-
+  if (isLoggedIn) {
+    return <Redirect to="/" />
+  }
   return (
     <div className="register-page">
       <div className="rainbow-m-vertical_x-large rainbow-m_auto">
