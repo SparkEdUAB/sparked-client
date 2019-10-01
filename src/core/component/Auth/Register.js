@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Button, CheckboxToggle } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
-import RegisterMutation from '../../queries/register'
+import RegisterMutation from '../../queries/registerMutation'
 import '../../styles/styles.css'
 
 function Register() {

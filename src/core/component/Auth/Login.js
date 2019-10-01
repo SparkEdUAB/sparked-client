@@ -1,23 +1,24 @@
 import React, { useState } from 'react'
 import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
-import RegisterMutation from '../../queries/register'
+import LoginMutation from '../../queries/loginMutation'
 import '../../styles/styles.css'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setLoading] = useState(false)
-  const [login, { data }] = useMutation(RegisterMutation)
+  const [login] = useMutation(LoginMutation)
 
   const inputStyles = {
     width: 400,
   }
-  async function handleLogin() {
+  function handleLogin() {
     setLoading(true)
-    await login({ variables: { email, password } })
-    setLoading(false)
-    console.log(data)
+    login({ variables: { email, password } }).then(data => {
+      localStorage.setItem('token', data.data.login)
+      setLoading(false)
+    })
   }
 
   return (
@@ -45,7 +46,7 @@ function Login() {
           />
           <Button
             isLoading={isLoading}
-            label="Register"
+            label="Login"
             variant="brand"
             className="rainbow-m-around_medium"
             onClick={handleLogin}
