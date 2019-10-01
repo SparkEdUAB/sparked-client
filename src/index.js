@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ApolloProvider } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
 
 import Routes from './core/routes/Routes'
 import * as serviceWorker from './serviceWorker'
@@ -12,11 +13,23 @@ const client = new ApolloClient({
     const token = localStorage.getItem('token')
     operation.setContext({
       headers: {
-        authorization: token ? `Bearer ${token}` : '',
+        authorization: token || '',
       },
     })
   },
 })
+
+// client
+//   .query({
+//     query: gql`
+//       {
+//         allUsers {
+//           name
+//         }
+//       }
+//     `,
+//   })
+//   .then(result => console.log(result))
 
 function App() {
   return (
