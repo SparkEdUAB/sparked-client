@@ -13,3 +13,17 @@ export default gql`
     }
   }
 `
+export const CREATE_COURSE = gql`
+  mutation createCourse($name: String!) {
+    addCourse(name: $name) {
+      name
+    }
+  }
+`
+export const DELETE_COURSE = gql`
+  mutation deleteCourse($ids: [String]!) {
+    deleteCourse(ids: $ids) {
+      name
+    }
+  }
+`
