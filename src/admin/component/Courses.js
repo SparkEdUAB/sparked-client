@@ -55,6 +55,7 @@ function CoursesList() {
     // handle the deleting here
   }
 
+  function handleCreateCourse() {}
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
@@ -70,6 +71,7 @@ function CoursesList() {
           label={name.length ? 'update' : 'add'}
           variant="outline-brand"
           className="rainbow-m-around_medium"
+          onClick={handleCreateCourse}
         />
       </Modal>
       <div>
@@ -101,12 +103,15 @@ function CoursesList() {
             />
           </Column>
         </Table>
-        <Pagination
-          className="rainbow-m_auto"
-          pages={data.getCourses.length / itemsPerPage}
-          activePage={activePage}
-          onChange={handleOnChange}
-        />
+        {(data.getCourses.length < 10) &
+        (
+          <Pagination
+            className="rainbow-m_auto"
+            pages={data.getCourses.length / itemsPerPage}
+            activePage={activePage}
+            onChange={handleOnChange}
+          />
+        ) || null}
       </div>
     </div>
   )

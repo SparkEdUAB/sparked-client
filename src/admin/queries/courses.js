@@ -13,3 +13,8 @@ export default gql`
     }
   }
 `
+export const CREATE_COURSE = gql`
+  mutation createCourse($name: String!) {
+    addCourse(name: $name)
+  }
+`
