@@ -11,7 +11,7 @@ import {
   Input,
   Button,
 } from 'react-rainbow-components'
-import { IoIosAdd } from 'react-icons/io'
+import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
 import GET_COURSES, { CREATE_COURSE } from '../queries/courses'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
@@ -27,7 +27,9 @@ function CoursesList() {
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
+  // const [courseIds, setCourseIds] = useState([])
   const itemsPerPage = 10
+  let courseIds = []
 
   function handleOnChange(event, page) {
     setActivePage(page)
@@ -54,6 +56,7 @@ function CoursesList() {
   }
   function handleOnDelete() {
     // handle the deleting here
+    console.log(courseIds)
   }
 
   function handleCreateCourse() {
@@ -93,13 +96,26 @@ function CoursesList() {
           New
           <IoIosAdd size={'2em'} />
         </Button>
+        <Button
+          variant="neutral"
+          className="rainbow-m-around_medium"
+          onClick={handleOnDelete}
+        >
+          Delete
+          <IoIosRemoveCircleOutline size={'2em'} />
+        </Button>
         <Table
           keyField="_id"
+          isLoading={loading}
           data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
           showCheckboxColumn
           maxRowSelection={itemsPerPage}
           selectedRows={['1234qwerty', '1234zxcvbn']}
-          onRowSelection={data => console.log(data._id)}
+          onRowSelection={data => {
+            // To avoid an overflow in states, directly mutate the ids
+            const ids = data.map(idss => idss._id)
+            courseIds = ids
+          }}
         >
           <Column header="Name" field="name" />
           <Column
@@ -111,10 +127,7 @@ function CoursesList() {
           {/* <Column header="Email" field="email" /> */}
           <Column type="action">
             <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
-            <MenuItem
-              label="Delete"
-              onClick={(e, data) => handleOnDelete(data._id)}
-            />
+            <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
         {(data.getCourses.length < 10) &
