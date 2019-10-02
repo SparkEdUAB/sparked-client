@@ -62,12 +62,14 @@ function CoursesList() {
       refetchQueries: [{ query: GET_COURSES }],
     }).then(() => {
       setName('')
+      setModal(false)
     })
   }
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
         <Input
+          label="Course"
           placeholder="Enter your name"
           type="text"
           className="rainbow-p-around_medium"
@@ -94,6 +96,10 @@ function CoursesList() {
         <Table
           keyField="_id"
           data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
+          showCheckboxColumn
+          maxRowSelection={itemsPerPage}
+          selectedRows={['1234qwerty', '1234zxcvbn']}
+          onRowSelection={data => console.log(data._id)}
         >
           <Column header="Name" field="name" />
           <Column
