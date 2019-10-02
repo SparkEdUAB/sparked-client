@@ -1,27 +1,34 @@
 import React, { useState } from 'react'
-import { Input, Button, CheckboxToggle } from 'react-rainbow-components'
+import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
-import RegisterMutation from '../../queries/registerMutation'
+import { Redirect } from 'react-router-dom'
+import LoginMutation from '../../queries/loginMutation'
 import '../../styles/styles.css'
 
-function Register() {
-  const [name, setName] = useState('')
+function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [gender, setGender] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [register, { data }] = useMutation(RegisterMutation)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [login] = useMutation(LoginMutation)
 
   const inputStyles = {
     width: 400,
   }
-  async function handleRegister() {
+  function handleLogin() {
     setLoading(true)
-    await register({ variables: { name, email, password, gender } })
-    setLoading(false)
-    console.log(data)
+    login({ variables: { email, password } })
+      .then(data => {
+        localStorage.setItem('token', data.data.login)
+      })
+      .then(() => {
+        setLoading(false)
+        setIsLoggedIn(true)
+      })
   }
-
+  if (isLoggedIn) {
+    return <Redirect to="/" />
+  }
   return (
     <div className="register-page">
       <div className="rainbow-m-vertical_x-large rainbow-m_auto">
@@ -31,19 +38,11 @@ function Register() {
             type="text"
             className="rainbow-p-around_medium"
             style={inputStyles}
-            label="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <Input
-            placeholder="Enter your email"
-            type="email"
-            className="rainbow-p-around_medium"
-            style={inputStyles}
             label="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
+
           <Input
             placeholder="Enter your password"
             type="password"
@@ -53,23 +52,16 @@ function Register() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-
-          <CheckboxToggle
-            id="checkbox-toggle-component-1"
-            label="Male Female"
-            value={gender}
-            onChange={() => setGender(gender ? 'male' : 'female')}
-          />
           <Button
             isLoading={isLoading}
-            label="Register"
+            label="Login"
             variant="brand"
             className="rainbow-m-around_medium"
-            onClick={handleRegister}
+            onClick={handleLogin}
           />
         </div>
       </div>
     </div>
   )
 }
-export default Register
+export default Login
