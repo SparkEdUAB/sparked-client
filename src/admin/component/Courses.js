@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import {
   Pagination,
   Spinner,
@@ -12,7 +12,7 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd } from 'react-icons/io'
-import GET_COURSES from '../queries/courses'
+import GET_COURSES, { CREATE_COURSE } from '../queries/courses'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 
@@ -23,6 +23,7 @@ const StatusBadge = ({ value }) => (
 )
 function CoursesList() {
   const { loading, data, error } = useQuery(GET_COURSES)
+  const [createcourse] = useMutation(CREATE_COURSE)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
@@ -55,7 +56,14 @@ function CoursesList() {
     // handle the deleting here
   }
 
-  function handleCreateCourse() {}
+  function handleCreateCourse() {
+    createcourse({
+      variables: { name },
+      refetchQueries: [{ query: GET_COURSES }],
+    }).then(() => {
+      setName('')
+    })
+  }
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
