@@ -11,6 +11,7 @@ import {
   Input,
   Button,
 } from 'react-rainbow-components'
+import { IoIosAdd } from 'react-icons/io'
 import GET_COURSES from '../queries/courses'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
@@ -66,33 +67,47 @@ function CoursesList() {
         />
         <Button
           isLoading={false}
-          label="update"
+          label={name.length ? 'update' : 'add'}
           variant="outline-brand"
           className="rainbow-m-around_medium"
         />
       </Modal>
-      <Table
-        keyField="_id"
-        data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
-      >
-        <Column header="Name" field="name" />
-        <Column header="created At" field="createdAt" component={StatusBadge} />
-        <Column header="created By" field="createdBy" />
-        {/* <Column header="Email" field="email" /> */}
-        <Column type="action">
-          <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
-          <MenuItem
-            label="Delete"
-            onClick={(e, data) => handleOnDelete(data._id)}
+      <div>
+        <Button
+          variant="neutral"
+          className="rainbow-m-around_medium"
+          onClick={() => setModal(true)}
+        >
+          New
+          <IoIosAdd size={'2em'} />
+        </Button>
+        <Table
+          keyField="_id"
+          data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
+        >
+          <Column header="Name" field="name" />
+          <Column
+            header="created At"
+            field="createdAt"
+            component={StatusBadge}
           />
-        </Column>
-      </Table>
-      <Pagination
-        className="rainbow-m_auto"
-        pages={data.getCourses.length / itemsPerPage}
-        activePage={activePage}
-        onChange={handleOnChange}
-      />
+          <Column header="created By" field="createdBy" />
+          {/* <Column header="Email" field="email" /> */}
+          <Column type="action">
+            <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
+            <MenuItem
+              label="Delete"
+              onClick={(e, data) => handleOnDelete(data._id)}
+            />
+          </Column>
+        </Table>
+        <Pagination
+          className="rainbow-m_auto"
+          pages={data.getCourses.length / itemsPerPage}
+          activePage={activePage}
+          onChange={handleOnChange}
+        />
+      </div>
     </div>
   )
 }
