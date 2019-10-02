@@ -12,7 +12,7 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_COURSES, { CREATE_COURSE } from '../queries/courses'
+import GET_COURSES, { CREATE_COURSE, DELETE_COURSE } from '../queries/courses'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 
@@ -24,6 +24,7 @@ const StatusBadge = ({ value }) => (
 function CoursesList() {
   const { loading, data, error } = useQuery(GET_COURSES)
   const [createcourse] = useMutation(CREATE_COURSE)
+  const [deletecourse] = useMutation(DELETE_COURSE)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
@@ -55,8 +56,10 @@ function CoursesList() {
     setModal(false)
   }
   function handleOnDelete() {
-    // handle the deleting here
-    console.log(courseIds)
+    deletecourse({
+      variables: { ids: courseIds },
+      refetchQueries: [{ query: GET_COURSES }],
+    })
   }
 
   function handleCreateCourse() {
