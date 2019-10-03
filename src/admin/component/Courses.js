@@ -116,7 +116,7 @@ function CoursesList() {
           selectedRows={['1234qwerty', '1234zxcvbn']}
           onRowSelection={data => {
             // To avoid an overflow in states, directly mutate the ids
-            const ids = data.map(idss => idss._id)
+            const ids = data.map(course => course._id)
             courseIds = ids
           }}
         >
