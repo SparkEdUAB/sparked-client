@@ -94,6 +94,7 @@ function UsersList() {
           onClick={handleUpdateUser}
         />
       </Modal>
+
       <div>
         <Button variant="neutral" className="rainbow-m-around_medium">
           Change Role
@@ -107,6 +108,7 @@ function UsersList() {
           Delete
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
+
         <Table
           keyField="_id"
           isLoading={loading}
