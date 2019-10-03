@@ -12,7 +12,7 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_COURSES, { CREATE_COURSE, DELETE_COURSE } from '../queries/courses'
+import GET_USERS, { UPDATE_USER, DELETE_USERS } from '../queries/users'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 
@@ -21,16 +21,15 @@ const badgeStyles = { color: '#1de9b6' }
 const StatusBadge = ({ value }) => (
   <Badge label={value} variant="lightest" style={badgeStyles} />
 )
-function CoursesList() {
-  const { loading, data, error } = useQuery(GET_COURSES)
-  const [createcourse] = useMutation(CREATE_COURSE)
-  const [deletecourse] = useMutation(DELETE_COURSE)
+function UsersList() {
+  const { loading, data, error } = useQuery(GET_USERS)
+  const [updateUser] = useMutation(UPDATE_USER)
+  const [deleteUser] = useMutation(DELETE_USERS)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
-  // const [courseIds, setCourseIds] = useState([])
   const itemsPerPage = 10
-  let courseIds = []
+  let userIds = []
 
   function handleOnChange(event, page) {
     setActivePage(page)
@@ -56,16 +55,16 @@ function CoursesList() {
     setModal(false)
   }
   function handleOnDelete() {
-    deletecourse({
-      variables: { ids: courseIds },
-      refetchQueries: [{ query: GET_COURSES }],
+    deleteUser({
+      variables: { ids: userIds },
+      refetchQueries: [{ query: GET_USERS }],
     })
   }
 
-  function handleCreateCourse() {
-    createcourse({
+  function handleUpdateUser() {
+    updateUser({
       variables: { name },
-      refetchQueries: [{ query: GET_COURSES }],
+      refetchQueries: [{ query: GET_USERS }],
     }).then(() => {
       setName('')
       setModal(false)
@@ -75,7 +74,7 @@ function CoursesList() {
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
         <Input
-          label="Course"
+          label="User"
           placeholder="Enter your name"
           type="text"
           className="rainbow-p-around_medium"
@@ -84,10 +83,10 @@ function CoursesList() {
         />
         <Button
           isLoading={false}
-          label={name.length ? 'update' : 'add'}
+          label={'update'}
           variant="outline-brand"
           className="rainbow-m-around_medium"
-          onClick={handleCreateCourse}
+          onClick={handleUpdateUser}
         />
       </Modal>
       <div>
@@ -110,33 +109,29 @@ function CoursesList() {
         <Table
           keyField="_id"
           isLoading={loading}
-          data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
+          data={renderPaginatedData(data.allUsers, activePage, itemsPerPage)}
           showCheckboxColumn
           maxRowSelection={itemsPerPage}
           selectedRows={['1234qwerty', '1234zxcvbn']}
           onRowSelection={data => {
             // To avoid an overflow in states, directly mutate the ids
-            const ids = data.map(course => course._id)
-            courseIds = ids
+            const ids = data.map(user => user._id)
+            userIds = ids
           }}
         >
           <Column header="Name" field="name" />
-          <Column
-            header="created At"
-            field="createdAt"
-            component={StatusBadge}
-          />
-          <Column header="created By" field="createdBy" />
+          <Column header="Email" field="email" />
+          <Column header="Role" field="role" component={StatusBadge} />
           <Column type="action">
             <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
             <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
-        {(data.getCourses.length < 10) &
+        {(data.allUsers.length < itemsPerPage) &
         (
           <Pagination
             className="rainbow-m_auto"
-            pages={data.getCourses.length / itemsPerPage}
+            pages={data.allUsers.length / itemsPerPage}
             activePage={activePage}
             onChange={handleOnChange}
           />
@@ -151,4 +146,4 @@ function renderPaginatedData(data, activePage, itemsPerPage) {
   const firstItem = lastItem - itemsPerPage
   return data.slice(firstItem, lastItem)
 }
-export default CoursesList
+export default UsersList

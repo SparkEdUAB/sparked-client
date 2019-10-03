@@ -4,6 +4,7 @@ import AppWrapper from '../component/AppWrapper'
 import CoursesList from '../component/Courses'
 import Page404 from '../../core/component/utils/404Page'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
+import UsersList from '../component/Users'
 
 export default function AdminRoutes() {
   const token = localStorage.getItem('token')
@@ -16,12 +17,17 @@ export default function AdminRoutes() {
             path="/admin/overview"
             component={() => <h4>Overview</h4>}
           />
-          <Route exact path="/admin/users" component={() => <h4>Users</h4>} />
           <PrivateRoute
             exact
             isLoggedIn={token ? true : false}
             path="/admin/courses"
             component={CoursesList}
+          />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/admin/users"
+            component={UsersList}
           />
 
           <Route component={Page404} />
