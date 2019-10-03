@@ -11,7 +11,9 @@ import {
   Input,
   Button,
 } from 'react-rainbow-components'
-import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
+import { IoIosRemoveCircleOutline } from 'react-icons/io'
+import { MdEdit } from 'react-icons/md'
+
 import GET_USERS, { UPDATE_USER, DELETE_USERS } from '../queries/users'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
@@ -55,6 +57,9 @@ function UsersList() {
     setModal(false)
   }
   function handleOnDelete() {
+    if (!userIds.length) {
+      return null
+    }
     deleteUser({
       variables: { ids: userIds },
       refetchQueries: [{ query: GET_USERS }],
@@ -90,13 +95,9 @@ function UsersList() {
         />
       </Modal>
       <div>
-        <Button
-          variant="neutral"
-          className="rainbow-m-around_medium"
-          onClick={() => setModal(true)}
-        >
-          New
-          <IoIosAdd size={'2em'} />
+        <Button variant="neutral" className="rainbow-m-around_medium">
+          Change Role
+          <MdEdit size={'1em'} />
         </Button>
         <Button
           variant="neutral"

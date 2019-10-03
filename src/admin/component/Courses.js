@@ -56,6 +56,9 @@ function CoursesList() {
     setModal(false)
   }
   function handleOnDelete() {
+    if (!courseIds.length) {
+      return null
+    }
     deletecourse({
       variables: { ids: courseIds },
       refetchQueries: [{ query: GET_COURSES }],
