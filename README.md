@@ -1,5 +1,7 @@
 ## Sparked-client V3
 
+Motivation, reasons and ideas behind v3 revamp can be found [here](https://github.com/SparkEdUAB/sparked-spec)
+
 > Software for organizing and presenting educational and training content for delivery on most platforms.
 
 [Check here](https://sparkeduab.github.io/sparked-manual/) for the online documentation how to use this project.
