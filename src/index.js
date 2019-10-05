@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 
 import Routes from './core/routes/Routes'
 import * as serviceWorker from './serviceWorker'
-import ApolloClient from 'apollo-boost'
+import ApolloClient, { gql } from 'apollo-boost'
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphiql',
@@ -22,8 +22,9 @@ const client = new ApolloClient({
 //   .query({
 //     query: gql`
 //       {
-//         allUsers {
+//         me {
 //           name
+//           email
 //         }
 //       }
 //     `,
