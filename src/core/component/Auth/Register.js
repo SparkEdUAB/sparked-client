@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect, Link } from 'react-router-dom'
 import { Input, Button, CheckboxToggle } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
 import RegisterMutation from '../../queries/registerMutation'
@@ -10,16 +11,21 @@ function Register() {
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState(false)
   const [isLoading, setLoading] = useState(false)
+  const [isRegistered, setIsRegistered] = useState(false)
   const [register, { data }] = useMutation(RegisterMutation)
 
   const inputStyles = {
     width: 400,
   }
+  // handle errors that could happen during registration
   async function handleRegister() {
     setLoading(true)
     await register({ variables: { name, email, password, gender } })
     setLoading(false)
-    console.log(data)
+    setIsRegistered(true)
+  }
+  if (isRegistered) {
+    return <Redirect to="/login" />
   }
 
   return (
@@ -67,6 +73,7 @@ function Register() {
             className="rainbow-m-around_medium"
             onClick={handleRegister}
           />
+          <Link to="/login">Login</Link>
         </div>
       </div>
     </div>
