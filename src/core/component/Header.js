@@ -65,6 +65,7 @@ function SectionHeading({ onToogleSidebar, history }) {
                 <p className="rainbow-font-size-text_small rainbow-color_gray-3">
                   {data.me.email}
                 </p>
+                <p>[{data.me.role}]</p>
               </div>
             ) : null}
           </li>

@@ -5,6 +5,7 @@ export default gql`
     me {
       name
       email
+      role
     }
   }
 `
