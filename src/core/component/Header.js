@@ -7,16 +7,22 @@ import {
   IoIosLogOut,
   IoIosPerson,
 } from 'react-icons/io'
-import ButtonIcon from 'react-rainbow-components/components/ButtonIcon'
-import AvatarMenu from 'react-rainbow-components/components/AvatarMenu'
-import Avatar from 'react-rainbow-components/components/Avatar'
-import Input from 'react-rainbow-components/components/Input'
-import MenuItem from 'react-rainbow-components/components/MenuItem'
-import MenuDivider from 'react-rainbow-components/components/MenuDivider'
-import ButtonMenu from 'react-rainbow-components/components/ButtonMenu'
+import {
+  ButtonIcon,
+  AvatarMenu,
+  Avatar,
+  Input,
+  MenuItem,
+  MenuDivider,
+  ButtonMenu,
+} from 'react-rainbow-components'
+import { useQuery } from '@apollo/react-hooks'
+import USER_INFO from '../queries/userInfoQuery'
 import '../styles/header.css'
 
 function SectionHeading({ onToogleSidebar, history }) {
+  const { loading, data, error } = useQuery(USER_INFO)
+
   return (
     <header className="react-rainbow-admin_header rainbow-position_fixed rainbow-flex rainbow-align_center rainbow-p-horizontal_large rainbow-background-color_white">
       <h3>SparkEd</h3>
@@ -35,27 +41,7 @@ function SectionHeading({ onToogleSidebar, history }) {
           icon={<IoMdNotifications />}
         >
           <MenuItem label="Notifications (2)" variant="header" />
-          {/* <MenuItem
-            icon={
-              <IconNotification
-                icon={
-                  <ShoppingCartIcon className="react-rainbow-admin_header--notification-icon" />
-                }
-              />
-            }
-            label={<Notification title="Your order is placed" />}
-          />
-          */}
-          {/* <MenuItem
-            icon={
-              <IconNotification
-                icon={
-                  <MessageIcon className="react-rainbow-admin_header--notification-icon" />
-                }
-              />
-            }
-            label={<Notification title="New messages" />}
-          />  */}
+          <MenuItem label="Another thing" variant="header" />
         </ButtonMenu>
         <AvatarMenu
           icon={<IoIosPerson size={'2em'} />}
@@ -71,14 +57,17 @@ function SectionHeading({ onToogleSidebar, history }) {
               size="medium"
               icon={<IoIosPerson size={'2em'} />}
             />
-            <div className="rainbow-m-left_x-small">
-              <p className="rainbow-font-size-text_medium rainbow-color_dark-1">
-                OlivierJM
-              </p>
-              <p className="rainbow-font-size-text_small rainbow-color_gray-3">
-                manolivier93@gmail.com
-              </p>
-            </div>
+            {!loading && !error ? (
+              <div className="rainbow-m-left_x-small">
+                <p className="rainbow-font-size-text_medium rainbow-color_dark-1">
+                  {data.me.name}
+                </p>
+                <p className="rainbow-font-size-text_small rainbow-color_gray-3">
+                  {data.me.email}
+                </p>
+                <p>[{data.me.role}]</p>
+              </div>
+            ) : null}
           </li>
           <MenuDivider variant="space" />
           <MenuItem

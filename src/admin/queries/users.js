@@ -3,8 +3,10 @@ import { gql } from 'apollo-boost'
 export default gql`
   {
     allUsers {
+      _id
       name
       role
+      gender
       email
     }
   }

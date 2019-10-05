@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import LoginMutation from '../../queries/loginMutation'
 import '../../styles/styles.css'
 
@@ -59,6 +59,7 @@ function Login() {
             className="rainbow-m-around_medium"
             onClick={handleLogin}
           />
+          <Link to="/register">Register</Link>
         </div>
       </div>
     </div>
