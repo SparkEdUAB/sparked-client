@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { Input, Button, CheckboxToggle } from 'react-rainbow-components'
+import {
+  Input,
+  Button,
+  CheckboxToggle,
+  RadioButtonGroup,
+} from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
 import RegisterMutation from '../../queries/registerMutation'
 import '../../styles/styles.css'
@@ -9,20 +14,36 @@ function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [gender, setGender] = useState(false)
+  const [gender, setGender] = useState('')
+  const [error, setError] = useState('')
   const [isLoading, setLoading] = useState(false)
   const [isRegistered, setIsRegistered] = useState(false)
-  const [register, { data }] = useMutation(RegisterMutation)
+  const [register] = useMutation(RegisterMutation)
 
   const inputStyles = {
     width: 400,
   }
+  const options = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+  ]
   // handle errors that could happen during registration
   async function handleRegister() {
+    if (!name.length || !email.length || !password.length) {
+      setError('You must enter all the fields marked with *')
+      return
+    }
     setLoading(true)
-    await register({ variables: { name, email, password, gender } })
-    setLoading(false)
-    setIsRegistered(true)
+    setError('')
+    try {
+      await register({ variables: { name, email, password, gender } })
+      setLoading(false)
+      setIsRegistered(true)
+    } catch (error) {
+      setError(error.message)
+      setLoading(false)
+    }
   }
   if (isRegistered) {
     return <Redirect to="/login" />
@@ -40,6 +61,7 @@ function Register() {
             label="Name"
             value={name}
             onChange={e => setName(e.target.value)}
+            required
           />
           <Input
             placeholder="Enter your email"
@@ -49,6 +71,7 @@ function Register() {
             label="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            required
           />
           <Input
             placeholder="Enter your password"
@@ -58,13 +81,17 @@ function Register() {
             label="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            required
           />
 
-          <CheckboxToggle
-            id="checkbox-toggle-component-1"
-            label="Male Female"
+          <RadioButtonGroup
+            id="radio-button-group-component-1"
+            options={options}
             value={gender}
-            onChange={() => setGender(gender ? 'male' : 'female')}
+            variant="brand"
+            onChange={e => setGender(e.target.value)}
+            label="Gender"
+            required
           />
           <Button
             isLoading={isLoading}
@@ -74,6 +101,7 @@ function Register() {
             onClick={handleRegister}
           />
           <Link to="/login">Login</Link>
+          {error ? <p>{error}</p> : null}
         </div>
       </div>
     </div>
