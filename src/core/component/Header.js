@@ -41,27 +41,7 @@ function SectionHeading({ onToogleSidebar, history }) {
           icon={<IoMdNotifications />}
         >
           <MenuItem label="Notifications (2)" variant="header" />
-          {/* <MenuItem
-            icon={
-              <IconNotification
-                icon={
-                  <ShoppingCartIcon className="react-rainbow-admin_header--notification-icon" />
-                }
-              />
-            }
-            label={<Notification title="Your order is placed" />}
-          />
-          */}
-          {/* <MenuItem
-            icon={
-              <IconNotification
-                icon={
-                  <MessageIcon className="react-rainbow-admin_header--notification-icon" />
-                }
-              />
-            }
-            label={<Notification title="New messages" />}
-          />  */}
+          <MenuItem label="Another thing" variant="header" />
         </ButtonMenu>
         <AvatarMenu
           icon={<IoIosPerson size={'2em'} />}
