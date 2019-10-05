@@ -8,7 +8,7 @@ Motivation, reasons and ideas behind v3 revamp can be found [here](https://githu
 
 # For Contributors
 
-> Read the Code of Conduct [here](https://github.com/SparkEdUAB/SparkEd/blob/master/CODE_OF_CONDUCT.md)
+> Read the Code of Conduct [here](https://github.com/SparkEdUAB/sparked-client/blob/master/CODE_OF_CONDUCT.md)
 
 The project uses the following stack
 
@@ -55,3 +55,7 @@ Before pushing anything to your fork, always
 `git pull upstream master`
 
 we accept all kinds of contributions
+
+**Reporting an issue**
+- check our security policy [here](https://github.com/SparkEdUAB/sparked-client/security/policy)
+- Read the Code of Conduct [here](https://github.com/SparkEdUAB/sparked-client/blob/master/CODE_OF_CONDUCT.md)
