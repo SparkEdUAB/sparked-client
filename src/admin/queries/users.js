@@ -6,6 +6,7 @@ export default gql`
       _id
       name
       role
+      gender
       email
     }
   }

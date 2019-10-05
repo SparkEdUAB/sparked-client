@@ -135,6 +135,7 @@ function UsersList() {
         >
           <Column header="Name" field="name" />
           <Column header="Email" field="email" />
+          <Column header="Gender" field="gender" />
           <Column header="Role" field="role" component={StatusBadge} />
           <Column type="action">
             <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
