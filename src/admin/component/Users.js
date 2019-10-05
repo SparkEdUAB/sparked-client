@@ -30,6 +30,7 @@ function UsersList() {
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
+  const [_error, setError] = useState('')
   const itemsPerPage = 10
   let userIds = []
 
@@ -58,12 +59,20 @@ function UsersList() {
   }
   function handleOnDelete() {
     if (!userIds.length) {
+      setError('Check at least one user')
       return null
     }
+
     deleteUser({
       variables: { ids: userIds },
       refetchQueries: [{ query: GET_USERS }],
     })
+      .then(_data => {
+        console.log(_data)
+      })
+      .catch(error => {
+        setError(error.message)
+      })
   }
 
   function handleUpdateUser() {
@@ -108,6 +117,7 @@ function UsersList() {
           Delete
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
+        {_error ? <p style={{ fontSize: 14, color: 'red' }}>{_error}</p> : null}
 
         <Table
           keyField="_id"
@@ -118,6 +128,7 @@ function UsersList() {
           selectedRows={['1234qwerty', '1234zxcvbn']}
           onRowSelection={data => {
             // To avoid an overflow in states, directly mutate the ids
+            console.log(data)
             const ids = data.map(user => user._id)
             userIds = ids
           }}
