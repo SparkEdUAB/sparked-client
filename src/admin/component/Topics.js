@@ -13,26 +13,25 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_COURSES, { CREATE_COURSE, DELETE_COURSE } from '../queries/courses'
+import GET_TOPICS, { CREATE_TOPIC, DELETE_TOPIC } from '../queries/topics'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
-import { renderPaginatedData } from '../../core/component/utils/utils'
 
 const badgeStyles = { color: '#1de9b6' }
 
 const StatusBadge = ({ value }) => (
   <Badge label={value} variant="lightest" style={badgeStyles} />
 )
-function CoursesList() {
-  const { loading, data, error } = useQuery(GET_COURSES)
-  const [createcourse] = useMutation(CREATE_COURSE)
-  const [deletecourse] = useMutation(DELETE_COURSE)
+function TopicsList() {
+  const { loading, data, error } = useQuery(GET_TOPICS)
+  const [createtopic] = useMutation(CREATE_TOPIC)
+  const [deletetopic] = useMutation(DELETE_TOPIC)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
-  // const [courseIds, setCourseIds] = useState([])
+  // const [topicIds, setTopicIds] = useState([])
   const itemsPerPage = 10
-  let courseIds = []
+  let topicIds = []
 
   function handleOnChange(event, page) {
     setActivePage(page)
@@ -58,19 +57,19 @@ function CoursesList() {
     setModal(false)
   }
   function handleOnDelete() {
-    if (!courseIds.length) {
+    if (!topicIds.length) {
       return null
     }
-    deletecourse({
-      variables: { ids: courseIds },
-      refetchQueries: [{ query: GET_COURSES }],
+    deletetopic({
+      variables: { ids: topicIds },
+      refetchQueries: [{ query: GET_TOPICS }],
     })
   }
 
-  function handleCreateCourse() {
-    createcourse({
+  function handleCreateTopic() {
+    createtopic({
       variables: { name },
-      refetchQueries: [{ query: GET_COURSES }],
+      refetchQueries: [{ query: GET_TOPICS }],
     }).then(() => {
       setName('')
       setModal(false)
@@ -80,7 +79,7 @@ function CoursesList() {
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
         <Input
-          label="Course"
+          label="Topic"
           placeholder="Enter your name"
           type="text"
           className="rainbow-p-around_medium"
@@ -92,7 +91,7 @@ function CoursesList() {
           label={name.length ? 'update' : 'add'}
           variant="outline-brand"
           className="rainbow-m-around_medium"
-          onClick={handleCreateCourse}
+          onClick={handleCreateTopic}
         />
       </Modal>
       <div>
@@ -112,56 +111,8 @@ function CoursesList() {
           Delete
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
-        <Table
-          keyField="_id"
-          isLoading={loading}
-          data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
-          showCheckboxColumn
-          maxRowSelection={itemsPerPage}
-          selectedRows={['1234qwerty', '1234zxcvbn']}
-          onRowSelection={data => {
-            // To avoid an overflow in states, directly mutate the ids
-            const ids = data.map(course => course._id)
-            courseIds = ids
-          }}
-        >
-          <Column
-            header="Name"
-            field="name"
-            component={({ value, row }) => (
-              <Link
-                className="react-rainbow-admin-users_user-id-cell-container"
-                to={`/admin/course/${row._id}`}
-              >
-                <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
-                  {value}
-                </div>
-              </Link>
-            )}
-          />
-          <Column
-            header="created At"
-            field="createdAt"
-            component={StatusBadge}
-          />
-          <Column header="created By" field="createdBy" />
-          <Column type="action">
-            <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
-            <MenuItem label="Delete" onClick={handleOnDelete} />
-          </Column>
-        </Table>
-        {(data.getCourses.length < 10) &
-        (
-          <Pagination
-            className="rainbow-m_auto"
-            pages={data.getCourses.length / itemsPerPage}
-            activePage={activePage}
-            onChange={handleOnChange}
-          />
-        ) || null}
       </div>
     </div>
   )
 }
-
-export default CoursesList
+export default TopicsList

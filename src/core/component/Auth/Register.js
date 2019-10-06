@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import {
-  Input,
-  Button,
-  CheckboxToggle,
-  RadioButtonGroup,
-} from 'react-rainbow-components'
+import { Input, Button, RadioButtonGroup } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
 import RegisterMutation from '../../queries/registerMutation'
 import '../../styles/styles.css'

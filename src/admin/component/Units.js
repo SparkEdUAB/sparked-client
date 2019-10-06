@@ -13,7 +13,7 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_COURSES, { CREATE_COURSE, DELETE_COURSE } from '../queries/courses'
+import GET_UNITS, { CREATE_UNIT, DELETE_UNIT } from '../queries/units'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 import { renderPaginatedData } from '../../core/component/utils/utils'
@@ -23,16 +23,19 @@ const badgeStyles = { color: '#1de9b6' }
 const StatusBadge = ({ value }) => (
   <Badge label={value} variant="lightest" style={badgeStyles} />
 )
-function CoursesList() {
-  const { loading, data, error } = useQuery(GET_COURSES)
-  const [createcourse] = useMutation(CREATE_COURSE)
-  const [deletecourse] = useMutation(DELETE_COURSE)
+function UnitsList({ match }) {
+  const courseId = match.params.id
+  const { loading, data, error } = useQuery(GET_UNITS, {
+    variables: { courseId },
+  })
+  const [createunit] = useMutation(CREATE_UNIT)
+  const [deleteunit] = useMutation(DELETE_UNIT)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
-  // const [courseIds, setCourseIds] = useState([])
+  // const [unitIds, setUnitIds] = useState([])
   const itemsPerPage = 10
-  let courseIds = []
+  let unitIds = []
 
   function handleOnChange(event, page) {
     setActivePage(page)
@@ -58,19 +61,19 @@ function CoursesList() {
     setModal(false)
   }
   function handleOnDelete() {
-    if (!courseIds.length) {
+    if (!unitIds.length) {
       return null
     }
-    deletecourse({
-      variables: { ids: courseIds },
-      refetchQueries: [{ query: GET_COURSES }],
+    deleteunit({
+      variables: { ids: unitIds },
+      refetchQueries: [{ query: GET_UNITS }],
     })
   }
 
-  function handleCreateCourse() {
-    createcourse({
-      variables: { name },
-      refetchQueries: [{ query: GET_COURSES }],
+  function handleCreateUnit() {
+    createunit({
+      variables: { name, courseId },
+      refetchQueries: [{ query: GET_UNITS }],
     }).then(() => {
       setName('')
       setModal(false)
@@ -80,7 +83,7 @@ function CoursesList() {
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
         <Input
-          label="Course"
+          label="Unit"
           placeholder="Enter your name"
           type="text"
           className="rainbow-p-around_medium"
@@ -92,7 +95,7 @@ function CoursesList() {
           label={name.length ? 'update' : 'add'}
           variant="outline-brand"
           className="rainbow-m-around_medium"
-          onClick={handleCreateCourse}
+          onClick={handleCreateUnit}
         />
       </Modal>
       <div>
@@ -115,14 +118,18 @@ function CoursesList() {
         <Table
           keyField="_id"
           isLoading={loading}
-          data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
+          data={renderPaginatedData(
+            data.getUnitsByCourseId,
+            activePage,
+            itemsPerPage
+          )}
           showCheckboxColumn
           maxRowSelection={itemsPerPage}
           selectedRows={['1234qwerty', '1234zxcvbn']}
           onRowSelection={data => {
             // To avoid an overflow in states, directly mutate the ids
-            const ids = data.map(course => course._id)
-            courseIds = ids
+            const ids = data.map(unit => unit._id)
+            unitIds = ids
           }}
         >
           <Column
@@ -131,7 +138,7 @@ function CoursesList() {
             component={({ value, row }) => (
               <Link
                 className="react-rainbow-admin-users_user-id-cell-container"
-                to={`/admin/course/${row._id}`}
+                to={`/admin/unit/${row._id}`}
               >
                 <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
                   {value}
@@ -150,11 +157,11 @@ function CoursesList() {
             <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
-        {(data.getCourses.length < 10) &
+        {(data.getUnitsByCourseId.length < 10) &
         (
           <Pagination
             className="rainbow-m_auto"
-            pages={data.getCourses.length / itemsPerPage}
+            pages={data.getUnitsByCourseId.length / itemsPerPage}
             activePage={activePage}
             onChange={handleOnChange}
           />
@@ -163,5 +170,4 @@ function CoursesList() {
     </div>
   )
 }
-
-export default CoursesList
+export default UnitsList
