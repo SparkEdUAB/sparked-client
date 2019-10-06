@@ -16,6 +16,7 @@ import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
 import GET_UNITS, { CREATE_UNIT, DELETE_UNIT } from '../queries/units'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
+import { renderPaginatedData } from '../../core/component/utils/utils'
 
 const badgeStyles = { color: '#1de9b6' }
 
@@ -67,11 +68,10 @@ function UnitsList({ match }) {
   }
 
   function handleCreateUnit() {
-    // get courseId from url
-    const courseId = match.params.id
+    const unitId = match.params.id
 
     createunit({
-      variables: { name, courseId },
+      variables: { name, unitId },
       refetchQueries: [{ query: GET_UNITS }],
     }).then(() => {
       setName('')
@@ -114,6 +114,53 @@ function UnitsList({ match }) {
           Delete
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
+        <Table
+          keyField="_id"
+          isLoading={loading}
+          data={renderPaginatedData(data.getUnits, activePage, itemsPerPage)}
+          showCheckboxColumn
+          maxRowSelection={itemsPerPage}
+          selectedRows={['1234qwerty', '1234zxcvbn']}
+          onRowSelection={data => {
+            // To avoid an overflow in states, directly mutate the ids
+            const ids = data.map(unit => unit._id)
+            unitIds = ids
+          }}
+        >
+          <Column
+            header="Name"
+            field="name"
+            component={({ value, row }) => (
+              <Link
+                className="react-rainbow-admin-users_user-id-cell-container"
+                to={`/admin/unit/${row._id}`}
+              >
+                <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
+                  {value}
+                </div>
+              </Link>
+            )}
+          />
+          <Column
+            header="created At"
+            field="createdAt"
+            component={StatusBadge}
+          />
+          <Column header="created By" field="createdBy" />
+          <Column type="action">
+            <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
+            <MenuItem label="Delete" onClick={handleOnDelete} />
+          </Column>
+        </Table>
+        {(data.getUnits.length < 10) &
+        (
+          <Pagination
+            className="rainbow-m_auto"
+            pages={data.getUnits.length / itemsPerPage}
+            activePage={activePage}
+            onChange={handleOnChange}
+          />
+        ) || null}
       </div>
     </div>
   )

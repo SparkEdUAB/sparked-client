@@ -16,6 +16,7 @@ import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
 import GET_COURSES, { CREATE_COURSE, DELETE_COURSE } from '../queries/courses'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
+import { renderPaginatedData } from '../../core/component/utils/utils'
 
 const badgeStyles = { color: '#1de9b6' }
 
@@ -163,9 +164,4 @@ function CoursesList() {
   )
 }
 
-function renderPaginatedData(data, activePage, itemsPerPage) {
-  const lastItem = activePage * itemsPerPage
-  const firstItem = lastItem - itemsPerPage
-  return data.slice(firstItem, lastItem)
-}
 export default CoursesList
