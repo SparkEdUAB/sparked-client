@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "olivierjm",
+      "name": "Olivier JM Maniraho",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11255454?v=4",
+      "profile": "https://olivierjm.dev",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc",
+        "design",
+        "platform"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "sparked-client",
+  "projectOwner": "SparkEdUAB",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
