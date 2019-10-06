@@ -17,7 +17,7 @@ The project uses the following stack
 - **eslint**
 - **Apollo GraphQL**
 
-This repo heavily relies on [sparked-server](https://github.com/SparkEdUAB/sparked-client) you might want to check it, all data is served from there.
+This repo heavily relies on [sparked-server](https://github.com/SparkEdUAB/sparked-server) you might want to check it, all data is served from there.
 
 ### Development
 
