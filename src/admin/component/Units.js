@@ -24,7 +24,10 @@ const StatusBadge = ({ value }) => (
   <Badge label={value} variant="lightest" style={badgeStyles} />
 )
 function UnitsList({ match }) {
-  const { loading, data, error } = useQuery(GET_UNITS)
+  const courseId = match.params.id
+  const { loading, data, error } = useQuery(GET_UNITS, {
+    variables: { courseId },
+  })
   const [createunit] = useMutation(CREATE_UNIT)
   const [deleteunit] = useMutation(DELETE_UNIT)
   const [activePage, setActivePage] = useState(1)
@@ -68,10 +71,8 @@ function UnitsList({ match }) {
   }
 
   function handleCreateUnit() {
-    const unitId = match.params.id
-
     createunit({
-      variables: { name, unitId },
+      variables: { name, courseId },
       refetchQueries: [{ query: GET_UNITS }],
     }).then(() => {
       setName('')
@@ -117,7 +118,11 @@ function UnitsList({ match }) {
         <Table
           keyField="_id"
           isLoading={loading}
-          data={renderPaginatedData(data.getUnits, activePage, itemsPerPage)}
+          data={renderPaginatedData(
+            data.getUnitsByCourseId,
+            activePage,
+            itemsPerPage
+          )}
           showCheckboxColumn
           maxRowSelection={itemsPerPage}
           selectedRows={['1234qwerty', '1234zxcvbn']}
@@ -152,11 +157,11 @@ function UnitsList({ match }) {
             <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
-        {(data.getUnits.length < 10) &
+        {(data.getUnitsByCourseId.length < 10) &
         (
           <Pagination
             className="rainbow-m_auto"
-            pages={data.getUnits.length / itemsPerPage}
+            pages={data.getUnitsByCourseId.length / itemsPerPage}
             activePage={activePage}
             onChange={handleOnChange}
           />
