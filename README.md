@@ -1,5 +1,10 @@
 ## Sparked-client V3
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+![GitHub](https://img.shields.io/github/license/Sparkeduab/sparked-client.svg?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/sparkeduab/sparked-client.svg?style=flat-square)
+![David](https://img.shields.io/david/dev/sparkeduab/sparked-client.svg?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues-raw/sparkeduab/sparked-client.svg?style=flat-square)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/sparkeduab/sparked-client.svg?style=flat-square)
 
 Motivation, reasons and ideas behind v3 revamp can be found [here](https://github.com/SparkEdUAB/sparked-spec)
 
