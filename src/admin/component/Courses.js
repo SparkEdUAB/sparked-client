@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
+import { Link } from 'react-router-dom'
 import {
   Pagination,
   Spinner,
@@ -123,7 +124,20 @@ function CoursesList() {
             courseIds = ids
           }}
         >
-          <Column header="Name" field="name" />
+          <Column
+            header="Name"
+            field="name"
+            component={({ value, row }) => (
+              <Link
+                className="react-rainbow-admin-users_user-id-cell-container"
+                to={`/admin/course/${row._id}`}
+              >
+                <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
+                  {value}
+                </div>
+              </Link>
+            )}
+          />
           <Column
             header="created At"
             field="createdAt"

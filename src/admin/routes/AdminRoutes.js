@@ -20,14 +20,20 @@ export default function AdminRoutes() {
           <PrivateRoute
             exact
             isLoggedIn={token ? true : false}
+            path="/admin/users"
+            component={UsersList}
+          />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
             path="/admin/courses"
             component={CoursesList}
           />
           <PrivateRoute
             exact
             isLoggedIn={token ? true : false}
-            path="/admin/users"
-            component={UsersList}
+            path="/admin/course/:id"
+            component={() => <h2>Topics here</h2>}
           />
 
           <Route component={Page404} />
