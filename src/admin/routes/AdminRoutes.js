@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AppWrapper from '../component/AppWrapper'
 import CoursesList from '../component/Courses'
+import UnitsList from '../component/Units'
 import Page404 from '../../core/component/utils/404Page'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import UsersList from '../component/Users'
@@ -33,7 +34,7 @@ export default function AdminRoutes() {
             exact
             isLoggedIn={token ? true : false}
             path="/admin/course/:id"
-            component={() => <h2>Topics here</h2>}
+            component={UnitsList}
           />
 
           <Route component={Page404} />
