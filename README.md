@@ -1,4 +1,5 @@
 ## Sparked-client V3
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 Motivation, reasons and ideas behind v3 revamp can be found [here](https://github.com/SparkEdUAB/sparked-spec)
 
@@ -59,3 +60,19 @@ we accept all kinds of contributions
 **Reporting an issue**
 - check our security policy [here](https://github.com/SparkEdUAB/sparked-client/security/policy)
 - Read the Code of Conduct [here](https://github.com/SparkEdUAB/sparked-client/blob/master/CODE_OF_CONDUCT.md)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://olivierjm.dev"><img src="https://avatars1.githubusercontent.com/u/11255454?v=4" width="100px;" alt="Olivier JM Maniraho"/><br /><sub><b>Olivier JM Maniraho</b></sub></a><br /><a href="https://github.com/SparkEdUAB/sparked-client/commits?author=olivierjm" title="Code">💻</a> <a href="#ideas-olivierjm" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/SparkEdUAB/sparked-client/commits?author=olivierjm" title="Documentation">📖</a> <a href="#design-olivierjm" title="Design">🎨</a> <a href="#platform-olivierjm" title="Packaging/porting to new platform">📦</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
