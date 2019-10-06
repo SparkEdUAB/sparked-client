@@ -17,6 +17,15 @@
         "design",
         "platform"
       ]
+    },
+    {
+      "login": "WillzMu",
+      "name": "Wilfred",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16624002?v=4",
+      "profile": "https://github.com/WillzMu",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
