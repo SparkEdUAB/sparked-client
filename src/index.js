@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker'
 import ApolloClient /* , { gql } */ from 'apollo-boost'
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphiql',
+  uri: `${process.env.REACT_APP_SERVER_ADDRESS}/graphiql`,
   request: operation => {
     const token = localStorage.getItem('token')
     operation.setContext({
@@ -17,7 +17,7 @@ const client = new ApolloClient({
     })
   },
 })
-
+// keep the lines below for testing different queries
 // client
 //   .query({
 //     query: gql`
