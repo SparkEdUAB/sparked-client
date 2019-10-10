@@ -57,7 +57,7 @@ function SectionHeading({ onToogleSidebar, history }) {
               size="medium"
               icon={<IoIosPerson size={'2em'} />}
             />
-            {!loading && !error ? (
+            {!loading && !error && data.me ? (
               <div className="rainbow-m-left_x-small">
                 <p className="rainbow-font-size-text_medium rainbow-color_dark-1">
                   {data.me.name}
