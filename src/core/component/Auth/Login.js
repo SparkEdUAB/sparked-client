@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
 import { Redirect, Link } from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications'
 import LoginMutation from '../../queries/loginMutation'
 import '../../styles/styles.css'
 
@@ -11,7 +12,7 @@ function Login() {
   const [isLoading, setLoading] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [login] = useMutation(LoginMutation)
-
+  const { addToast } = useToasts()
   const inputStyles = {
     width: 400,
   }
@@ -24,6 +25,17 @@ function Login() {
       .then(() => {
         setLoading(false)
         setIsLoggedIn(true)
+        addToast('Successfully Logged in', {
+          appearance: 'success',
+          autoDismiss: true,
+        })
+      })
+      .catch(error => {
+        addToast(error.message, {
+          appearance: 'error',
+          autoDismiss: true,
+        })
+        setLoading(false)
       })
   }
   if (isLoggedIn) {
