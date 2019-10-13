@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "register": "Register",
+    "login": "Login",
+    "name_l": "Name",
+    "name_p": "Enter your name",
+    "email_l": "Email",
+    "email_p": "Enter your email",
+    "password_l": "Password",
+    "password_p": "Enter your password"
+  }
+}

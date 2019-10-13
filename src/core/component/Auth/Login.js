@@ -3,6 +3,7 @@ import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
 import { Redirect, Link } from 'react-router-dom'
 import { useToasts } from 'react-toast-notifications'
+import { useTranslation } from 'react-i18next'
 import LoginMutation from '../../queries/loginMutation'
 import '../../styles/styles.css'
 
@@ -13,6 +14,7 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [login] = useMutation(LoginMutation)
   const { addToast } = useToasts()
+  const { t } = useTranslation()
   const inputStyles = {
     width: 400,
   }
@@ -49,32 +51,32 @@ function Login() {
       <div className="rainbow-m-vertical_x-large rainbow-m_auto">
         <div className="rainbow-align-content_center rainbow-flex_wrap">
           <Input
-            placeholder="Enter your name"
+            placeholder={t('auth.email_p')}
             type="text"
             className="rainbow-p-around_medium"
             style={inputStyles}
-            label="Email"
+            label={t('auth.email_l')}
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
 
           <Input
-            placeholder="Enter your password"
+            placeholder={t('auth.password_p')}
             type="password"
             className="rainbow-p-around_medium"
             style={inputStyles}
-            label="Password"
+            label={t('auth.password_l')}
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
           <Button
             isLoading={isLoading}
-            label="Login"
+            label={t('auth.login')}
             variant="brand"
             className="rainbow-m-around_medium"
             onClick={handleLogin}
           />
-          <Link to="/register">Register</Link>
+          <Link to="/register">{t('auth.register')}</Link>
         </div>
       </div>
     </div>
