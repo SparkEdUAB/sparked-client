@@ -13,6 +13,7 @@ export default function ClientRoutes() {
       <div
         style={{
           marginTop: 100,
+          padding: '1.5em',
         }}
       >
         <Switch>

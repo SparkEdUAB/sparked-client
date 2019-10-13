@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { Input, Button, RadioButtonGroup } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
+import { useToasts } from 'react-toast-notifications'
 import RegisterMutation from '../../queries/registerMutation'
 import '../../styles/styles.css'
 
@@ -10,10 +11,10 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState('')
-  const [error, setError] = useState('')
   const [isLoading, setLoading] = useState(false)
   const [isRegistered, setIsRegistered] = useState(false)
   const [register] = useMutation(RegisterMutation)
+  const { addToast } = useToasts()
 
   const inputStyles = {
     width: 400,
@@ -23,20 +24,28 @@ function Register() {
     { value: 'female', label: 'Female' },
     { value: 'other', label: 'Other' },
   ]
-  // handle errors that could happen during registration
   async function handleRegister() {
     if (!name.length || !email.length || !password.length) {
-      setError('You must enter all the fields marked with *')
+      addToast('You must enter all the fields marked with *', {
+        appearance: 'error',
+        autoDismiss: true,
+      })
       return
     }
     setLoading(true)
-    setError('')
     try {
       await register({ variables: { name, email, password, gender } })
       setLoading(false)
       setIsRegistered(true)
+      addToast('Successfully Registered', {
+        appearance: 'success',
+        autoDismiss: true,
+      })
     } catch (error) {
-      setError(error.message)
+      addToast(error.message, {
+        appearance: 'error',
+        autoDismiss: true,
+      })
       setLoading(false)
     }
   }
@@ -96,7 +105,6 @@ function Register() {
             onClick={handleRegister}
           />
           <Link to="/login">Login</Link>
-          {error ? <p>{error}</p> : null}
         </div>
       </div>
     </div>

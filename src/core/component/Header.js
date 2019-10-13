@@ -16,6 +16,7 @@ import {
   MenuDivider,
   ButtonMenu,
 } from 'react-rainbow-components'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import USER_INFO from '../queries/userInfoQuery'
 import '../styles/header.css'
@@ -25,7 +26,9 @@ function SectionHeading({ onToogleSidebar, history }) {
 
   return (
     <header className="react-rainbow-admin_header rainbow-position_fixed rainbow-flex rainbow-align_center rainbow-p-horizontal_large rainbow-background-color_white">
-      <h3>SparkEd</h3>
+      <Link style={{ textDecoration: 'none' }} to="/">
+        <h3>SparkEd</h3>
+      </Link>
       <Input
         className="rainbow-m-left_xx-large react-rainbow-admin_header-search"
         placeholder="search"
