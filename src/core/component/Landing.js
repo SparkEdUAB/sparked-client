@@ -6,7 +6,7 @@ function Landing() {
   return (
     <>
       <div className="bg"></div>
-      <div className="flex-container" id="flex-container">
+      <div className="flex-container">
         <Link to="/admin/overview">Dashboard</Link>
       </div>
     </>

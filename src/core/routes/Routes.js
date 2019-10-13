@@ -12,8 +12,8 @@ function Routes() {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/admin/" component={AdminRoutes} />
-        <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route component={Page404} />
       </Switch>
     </BrowserRouter>
