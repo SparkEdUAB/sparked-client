@@ -39,7 +39,7 @@ function Login() {
       })
   }
   if (isLoggedIn) {
-    return <Redirect to="/" />
+    return <Redirect to="/client/courses" />
   }
   return (
     <div className="register-page">
