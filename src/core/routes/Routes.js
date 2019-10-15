@@ -10,14 +10,21 @@ import ClientRoutes from '../../client/routes/ClientRoutes'
 function Routes() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/admin/" component={AdminRoutes} />
-        <Route path="/client/" component={ClientRoutes} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route component={Page404} />
-      </Switch>
+      <div
+        style={{
+          background: 'dark' === 'dark' ? '#000' : '#fff',
+          color: 'dark' === 'dark' ? '#fff' : '#000',
+        }}
+      >
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/admin/" component={AdminRoutes} />
+          <Route path="/client/" component={ClientRoutes} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route component={Page404} />
+        </Switch>
+      </div>
     </BrowserRouter>
   )
 }

@@ -6,6 +6,7 @@ import { useToasts } from 'react-toast-notifications'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
 import LoginMutation from '../../queries/login.mutation'
+import useTheme from '../Theme/useTheme'
 import '../../styles/styles.css'
 
 function Login() {
@@ -16,6 +17,7 @@ function Login() {
   const [login] = useMutation(LoginMutation)
   const { addToast } = useToasts()
   const { t } = useTranslation()
+  const [theme, toggleTheme] = useTheme()
   const inputStyles = {
     width: 400,
   }
@@ -52,7 +54,13 @@ function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <div className="register-page">
+      <div
+        className="register-page"
+        style={{
+          background: theme === 'dark' ? '#000' : '#fff',
+          color: theme === 'dark' ? '#fff' : '#000',
+        }}
+      >
         <div className="rainbow-m-vertical_x-large rainbow-m_auto">
           <div className="rainbow-align-content_center rainbow-flex_wrap">
             <Input
