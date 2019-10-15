@@ -1,7 +1,8 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { ToastProvider } from 'react-toast-notifications'
+import { Helmet } from 'react-helmet'
 import Routes from './core/routes/Routes'
 import * as serviceWorker from './serviceWorker'
 import ApolloClient /* , { gql } */ from 'apollo-boost'
@@ -35,13 +36,16 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <Suspense fallback={<Spinner />}>
-      <ApolloProvider client={client}>
-        <ToastProvider>
-          <Routes />
-        </ToastProvider>
-      </ApolloProvider>
-    </Suspense>
+    <Fragment>
+      <Helmet titleTemplate="%s - SparkEd" defaultTitle="SparkEd" />
+      <Suspense fallback={<Spinner />}>
+        <ApolloProvider client={client}>
+          <ToastProvider>
+            <Routes />
+          </ToastProvider>
+        </ApolloProvider>
+      </Suspense>
+    </Fragment>
   )
 }
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
+import { Helmet } from 'react-helmet'
 import {
   Pagination,
   Spinner,
@@ -85,74 +86,84 @@ function UsersList() {
     })
   }
   return (
-    <div className="rainbow-p-bottom_xx-large">
-      <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
-        <Input
-          label="User"
-          placeholder="Enter your name"
-          type="text"
-          className="rainbow-p-around_medium"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <Button
-          isLoading={false}
-          label={'update'}
-          variant="outline-brand"
-          className="rainbow-m-around_medium"
-          onClick={handleUpdateUser}
-        />
-      </Modal>
-
-      <div>
-        <Button variant="neutral" className="rainbow-m-around_medium">
-          Change Role
-          <MdEdit size={'1em'} />
-        </Button>
-        <Button
-          variant="neutral"
-          className="rainbow-m-around_medium"
-          onClick={handleOnDelete}
-        >
-          Delete
-          <IoIosRemoveCircleOutline size={'2em'} />
-        </Button>
-        {_error ? <p style={{ fontSize: 14, color: 'red' }}>{_error}</p> : null}
-
-        <Table
-          keyField="_id"
-          isLoading={loading}
-          data={renderPaginatedData(data.allUsers, activePage, itemsPerPage)}
-          showCheckboxColumn
-          maxRowSelection={itemsPerPage}
-          selectedRows={['1234qwerty', '1234zxcvbn']}
-          onRowSelection={data => {
-            // To avoid an overflow in states, directly mutate the ids
-            console.log(data)
-            const ids = data.map(user => user._id)
-            userIds = ids
-          }}
-        >
-          <Column header="Name" field="name" />
-          <Column header="Email" field="email" />
-          <Column header="Gender" field="gender" />
-          <Column header="Role" field="role" component={StatusBadge} />
-          <Column type="action">
-            <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
-            <MenuItem label="Delete" onClick={handleOnDelete} />
-          </Column>
-        </Table>
-        {(data.allUsers.length < itemsPerPage) &
-        (
-          <Pagination
-            className="rainbow-m_auto"
-            pages={data.allUsers.length / itemsPerPage}
-            activePage={activePage}
-            onChange={handleOnChange}
+    <Fragment>
+      <Helmet>
+        <title>Users</title>
+      </Helmet>
+      <div className="rainbow-p-bottom_xx-large">
+        <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
+          <Input
+            label="User"
+            placeholder="Enter your name"
+            type="text"
+            className="rainbow-p-around_medium"
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
-        ) || null}
+          <Button
+            isLoading={false}
+            label={'update'}
+            variant="outline-brand"
+            className="rainbow-m-around_medium"
+            onClick={handleUpdateUser}
+          />
+        </Modal>
+
+        <div>
+          <Button variant="neutral" className="rainbow-m-around_medium">
+            Change Role
+            <MdEdit size={'1em'} />
+          </Button>
+          <Button
+            variant="neutral"
+            className="rainbow-m-around_medium"
+            onClick={handleOnDelete}
+          >
+            Delete
+            <IoIosRemoveCircleOutline size={'2em'} />
+          </Button>
+          {_error ? (
+            <p style={{ fontSize: 14, color: 'red' }}>{_error}</p>
+          ) : null}
+
+          <Table
+            keyField="_id"
+            isLoading={loading}
+            data={renderPaginatedData(data.allUsers, activePage, itemsPerPage)}
+            showCheckboxColumn
+            maxRowSelection={itemsPerPage}
+            selectedRows={['1234qwerty', '1234zxcvbn']}
+            onRowSelection={data => {
+              // To avoid an overflow in states, directly mutate the ids
+              console.log(data)
+              const ids = data.map(user => user._id)
+              userIds = ids
+            }}
+          >
+            <Column header="Name" field="name" />
+            <Column header="Email" field="email" />
+            <Column header="Gender" field="gender" />
+            <Column header="Role" field="role" component={StatusBadge} />
+            <Column type="action">
+              <MenuItem
+                label="Edit"
+                onClick={(e, data) => handleOnClick(data)}
+              />
+              <MenuItem label="Delete" onClick={handleOnDelete} />
+            </Column>
+          </Table>
+          {(data.allUsers.length < itemsPerPage) &
+          (
+            <Pagination
+              className="rainbow-m_auto"
+              pages={data.allUsers.length / itemsPerPage}
+              activePage={activePage}
+              onChange={handleOnChange}
+            />
+          ) || null}
+        </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 

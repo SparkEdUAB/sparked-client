@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import {
   Pagination,
   Spinner,
@@ -77,90 +78,102 @@ function CoursesList() {
     })
   }
   return (
-    <div className="rainbow-p-bottom_xx-large">
-      <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
-        <Input
-          label="Course"
-          placeholder="Enter your name"
-          type="text"
-          className="rainbow-p-around_medium"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <Button
-          isLoading={false}
-          label={name.length ? 'update' : 'add'}
-          variant="outline-brand"
-          className="rainbow-m-around_medium"
-          onClick={handleCreateCourse}
-        />
-      </Modal>
-      <div>
-        <Button
-          variant="neutral"
-          className="rainbow-m-around_medium"
-          onClick={() => setModal(true)}
-        >
-          New
-          <IoIosAdd size={'2em'} />
-        </Button>
-        <Button
-          variant="neutral"
-          className="rainbow-m-around_medium"
-          onClick={handleOnDelete}
-        >
-          Delete
-          <IoIosRemoveCircleOutline size={'2em'} />
-        </Button>
-        <Table
-          keyField="_id"
-          isLoading={loading}
-          data={renderPaginatedData(data.getCourses, activePage, itemsPerPage)}
-          showCheckboxColumn
-          maxRowSelection={itemsPerPage}
-          selectedRows={['1234qwerty', '1234zxcvbn']}
-          onRowSelection={data => {
-            // To avoid an overflow in states, directly mutate the ids
-            const ids = data.map(course => course._id)
-            courseIds = ids
-          }}
-        >
-          <Column
-            header="Name"
-            field="name"
-            component={({ value, row }) => (
-              <Link
-                className="react-rainbow-admin-users_user-id-cell-container"
-                to={`/admin/course/${row._id}`}
-              >
-                <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
-                  {value}
-                </div>
-              </Link>
+    <Fragment>
+      <Helmet>
+        <title>Courses</title>
+      </Helmet>
+      <div className="rainbow-p-bottom_xx-large">
+        <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
+          <Input
+            label="Course"
+            placeholder="Enter your name"
+            type="text"
+            className="rainbow-p-around_medium"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          <Button
+            isLoading={false}
+            label={name.length ? 'update' : 'add'}
+            variant="outline-brand"
+            className="rainbow-m-around_medium"
+            onClick={handleCreateCourse}
+          />
+        </Modal>
+        <div>
+          <Button
+            variant="neutral"
+            className="rainbow-m-around_medium"
+            onClick={() => setModal(true)}
+          >
+            New
+            <IoIosAdd size={'2em'} />
+          </Button>
+          <Button
+            variant="neutral"
+            className="rainbow-m-around_medium"
+            onClick={handleOnDelete}
+          >
+            Delete
+            <IoIosRemoveCircleOutline size={'2em'} />
+          </Button>
+          <Table
+            keyField="_id"
+            isLoading={loading}
+            data={renderPaginatedData(
+              data.getCourses,
+              activePage,
+              itemsPerPage
             )}
-          />
-          <Column
-            header="created At"
-            field="createdAt"
-            component={StatusBadge}
-          />
-          <Column header="created By" field="createdBy" />
-          <Column type="action">
-            <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
-            <MenuItem label="Delete" onClick={handleOnDelete} />
-          </Column>
-        </Table>
-        {(data.getCourses.length < 10) &
-        (
-          <Pagination
-            className="rainbow-m_auto"
-            pages={data.getCourses.length / itemsPerPage}
-            activePage={activePage}
-            onChange={handleOnChange}
-          />
-        ) || null}
+            showCheckboxColumn
+            maxRowSelection={itemsPerPage}
+            selectedRows={['1234qwerty', '1234zxcvbn']}
+            onRowSelection={data => {
+              // To avoid an overflow in states, directly mutate the ids
+              const ids = data.map(course => course._id)
+              courseIds = ids
+            }}
+          >
+            <Column
+              header="Name"
+              field="name"
+              component={({ value, row }) => (
+                <Link
+                  className="react-rainbow-admin-users_user-id-cell-container"
+                  to={`/admin/course/${row._id}`}
+                >
+                  <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
+                    {value}
+                  </div>
+                </Link>
+              )}
+            />
+            <Column
+              header="created At"
+              field="createdAt"
+              component={StatusBadge}
+            />
+            <Column header="created By" field="createdBy" />
+            <Column type="action">
+              <MenuItem
+                label="Edit"
+                onClick={(e, data) => handleOnClick(data)}
+              />
+              <MenuItem label="Delete" onClick={handleOnDelete} />
+            </Column>
+          </Table>
+          {(data.getCourses.length < 10) &
+          (
+            <Pagination
+              className="rainbow-m_auto"
+              pages={data.getCourses.length / itemsPerPage}
+              activePage={activePage}
+              onChange={handleOnChange}
+            />
+          ) || null}
+        </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
