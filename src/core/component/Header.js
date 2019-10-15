@@ -18,7 +18,7 @@ import {
 } from 'react-rainbow-components'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
-import USER_INFO from '../queries/userInfoQuery'
+import USER_INFO from '../queries/user.query'
 import '../styles/header.css'
 
 function SectionHeading({ onToogleSidebar, history }) {

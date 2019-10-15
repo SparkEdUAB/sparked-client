@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { Input, Button } from 'react-rainbow-components'
 import { useMutation } from '@apollo/react-hooks'
 import { Redirect, Link } from 'react-router-dom'
 import { useToasts } from 'react-toast-notifications'
 import { useTranslation } from 'react-i18next'
-import LoginMutation from '../../queries/loginMutation'
+import { Helmet } from 'react-helmet'
+import LoginMutation from '../../queries/login.mutation'
 import '../../styles/styles.css'
 
 function Login() {
@@ -47,39 +48,44 @@ function Login() {
     return <Redirect to="/client/courses" />
   }
   return (
-    <div className="register-page">
-      <div className="rainbow-m-vertical_x-large rainbow-m_auto">
-        <div className="rainbow-align-content_center rainbow-flex_wrap">
-          <Input
-            placeholder={t('auth.email_p')}
-            type="text"
-            className="rainbow-p-around_medium"
-            style={inputStyles}
-            label={t('auth.email_l')}
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
+    <Fragment>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <div className="register-page">
+        <div className="rainbow-m-vertical_x-large rainbow-m_auto">
+          <div className="rainbow-align-content_center rainbow-flex_wrap">
+            <Input
+              placeholder={t('auth.email_p')}
+              type="text"
+              className="rainbow-p-around_medium"
+              style={inputStyles}
+              label={t('auth.email_l')}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
 
-          <Input
-            placeholder={t('auth.password_p')}
-            type="password"
-            className="rainbow-p-around_medium"
-            style={inputStyles}
-            label={t('auth.password_l')}
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <Button
-            isLoading={isLoading}
-            label={t('auth.login')}
-            variant="brand"
-            className="rainbow-m-around_medium"
-            onClick={handleLogin}
-          />
-          <Link to="/register">{t('auth.register')}</Link>
+            <Input
+              placeholder={t('auth.password_p')}
+              type="password"
+              className="rainbow-p-around_medium"
+              style={inputStyles}
+              label={t('auth.password_l')}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Button
+              isLoading={isLoading}
+              label={t('auth.login')}
+              variant="brand"
+              className="rainbow-m-around_medium"
+              onClick={handleLogin}
+            />
+            <Link to="/register">{t('auth.register')}</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 export default Login

@@ -1,5 +1,5 @@
 ## Sparked-client V3
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 ![GitHub](https://img.shields.io/github/license/Sparkeduab/sparked-client.svg?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/sparkeduab/sparked-client.svg?style=flat-square)
 ![David](https://img.shields.io/david/dev/sparkeduab/sparked-client.svg?style=flat-square)
@@ -76,6 +76,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://olivierjm.dev"><img src="https://avatars1.githubusercontent.com/u/11255454?v=4" width="100px;" alt="Olivier JM Maniraho"/><br /><sub><b>Olivier JM Maniraho</b></sub></a><br /><a href="https://github.com/SparkEdUAB/sparked-client/commits?author=olivierjm" title="Code">💻</a> <a href="#ideas-olivierjm" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/SparkEdUAB/sparked-client/commits?author=olivierjm" title="Documentation">📖</a> <a href="#design-olivierjm" title="Design">🎨</a> <a href="#platform-olivierjm" title="Packaging/porting to new platform">📦</a></td>
     <td align="center"><a href="https://github.com/WillzMu"><img src="https://avatars3.githubusercontent.com/u/16624002?v=4" width="100px;" alt="Wilfred"/><br /><sub><b>Wilfred</b></sub></a><br /><a href="https://github.com/SparkEdUAB/sparked-client/commits?author=WillzMu" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-raskopf-denardin-saldanha-4b0b24144/"><img src="https://avatars3.githubusercontent.com/u/28638133?v=4" width="100px;" alt="João Pedro Raskopf"/><br /><sub><b>João Pedro Raskopf</b></sub></a><br /><a href="https://github.com/SparkEdUAB/sparked-client/commits?author=jprask" title="Code">💻</a></td>
   </tr>
 </table>
 

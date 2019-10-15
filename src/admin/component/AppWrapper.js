@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Sidebar, SidebarItem } from 'react-rainbow-components'
+import { Helmet } from 'react-helmet'
 import {
   IoIosPeople,
   IoMdBook,
@@ -30,6 +31,9 @@ class AppWrapper extends React.Component {
 
     return (
       <Fragment>
+        <Helmet>
+          <title>Admin Dashboard</title>
+        </Helmet>
         <Header />
         <div className="dash-wrapper">
           <div className="sidenav">
