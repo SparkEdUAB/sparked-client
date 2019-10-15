@@ -17,7 +17,7 @@ function Login() {
   const [login] = useMutation(LoginMutation)
   const { addToast } = useToasts()
   const { t } = useTranslation()
-  const [theme, toggleTheme] = useTheme()
+  const [theme] = useTheme()
   const inputStyles = {
     width: 400,
   }
