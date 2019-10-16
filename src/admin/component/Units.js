@@ -14,7 +14,7 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_UNITS, { CREATE_UNIT, DELETE_UNIT } from '../queries/units'
+import GET_UNITS, { CREATE_UNIT, DELETE_UNIT } from '../queries/units.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 import { renderPaginatedData } from '../../core/component/utils/utils'

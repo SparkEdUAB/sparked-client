@@ -14,7 +14,10 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_COURSES, { CREATE_COURSE, DELETE_COURSE } from '../queries/courses'
+import GET_COURSES, {
+  CREATE_COURSE,
+  DELETE_COURSE,
+} from '../queries/courses.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 import { renderPaginatedData } from '../../core/component/utils/utils'

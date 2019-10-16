@@ -4,7 +4,7 @@ import { Card, Spinner } from 'react-rainbow-components'
 import { useQuery } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import GET_COURSES from '../queries/courses'
+import GET_COURSES from '../queries/courses.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 
 function Courses() {

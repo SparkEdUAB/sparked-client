@@ -13,7 +13,7 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_TOPICS, { CREATE_TOPIC, DELETE_TOPIC } from '../queries/topics'
+import GET_TOPICS, { CREATE_TOPIC, DELETE_TOPIC } from '../queries/topics.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 

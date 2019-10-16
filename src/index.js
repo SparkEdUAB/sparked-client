@@ -20,20 +20,6 @@ const client = new ApolloClient({
     })
   },
 })
-// keep the lines below for testing different queries
-// client
-//   .query({
-//     query: gql`
-//       {
-//         me {
-//           name
-//           email
-//         }
-//       }
-//     `,
-//   })
-//   .then(result => console.log(result))
-
 function App() {
   return (
     <Fragment>

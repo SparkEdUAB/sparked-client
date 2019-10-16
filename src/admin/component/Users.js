@@ -15,7 +15,7 @@ import {
 import { IoIosRemoveCircleOutline } from 'react-icons/io'
 import { MdEdit } from 'react-icons/md'
 
-import GET_USERS, { UPDATE_USER, DELETE_USERS } from '../queries/users'
+import GET_USERS, { UPDATE_USER, DELETE_USERS } from '../queries/users.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 
