@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Page404 from '../../core/component/utils/404Page'
+import { BrowserRouter, Switch } from 'react-router-dom'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import Courses from '../component/UserCourses'
 import Header from '../../core/component/Header'
@@ -23,8 +22,6 @@ export default function ClientRoutes() {
             path="/client/courses"
             component={Courses}
           />
-
-          <Route component={Page404} />
         </Switch>
       </div>
     </BrowserRouter>
