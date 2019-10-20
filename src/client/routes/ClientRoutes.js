@@ -4,6 +4,7 @@ import Page404 from '../../core/component/utils/404Page'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
+import Units from '../component/Units'
 
 export default function ClientRoutes() {
   const token = localStorage.getItem('token')
@@ -22,6 +23,12 @@ export default function ClientRoutes() {
             isLoggedIn={token ? true : false}
             path="/client/courses"
             component={Courses}
+          />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/client/units/:id"
+            component={Units}
           />
 
           <Route component={Page404} />

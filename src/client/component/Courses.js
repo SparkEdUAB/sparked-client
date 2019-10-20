@@ -33,7 +33,7 @@ function Courses() {
               style={{
                 textDecoration: 'none',
               }}
-              to="/client/course/"
+              to={`/client/units/${course._id}`}
             >
               <Card>
                 <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">

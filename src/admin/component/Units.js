@@ -83,7 +83,7 @@ function UnitsList({ match }) {
   return (
     <Fragment>
       <Helmet>
-        <title>{name}</title>
+        <title>{'Admin Units'}</title>
       </Helmet>
       <div className="rainbow-p-bottom_xx-large">
         <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
