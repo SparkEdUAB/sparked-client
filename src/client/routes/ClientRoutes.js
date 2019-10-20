@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Page404 from '../../core/component/utils/404Page'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
-import Courses from '../component/UserCourses'
+import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
 
 export default function ClientRoutes() {
