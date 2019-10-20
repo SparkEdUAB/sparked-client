@@ -30,6 +30,12 @@ export default function ClientRoutes() {
             path="/client/units/:id"
             component={Units}
           />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/client/units/:id/:topic"
+            component={Units}
+          />
 
           <Route component={Page404} />
         </Switch>
