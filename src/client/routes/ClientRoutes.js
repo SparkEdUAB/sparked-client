@@ -1,8 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Switch } from 'react-router-dom'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
-import Courses from '../component/UserCourses'
+import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
+import Units from '../component/Units'
 
 export default function ClientRoutes() {
   const token = localStorage.getItem('token')
@@ -21,6 +22,18 @@ export default function ClientRoutes() {
             isLoggedIn={token ? true : false}
             path="/client/courses"
             component={Courses}
+          />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/client/units/:id"
+            component={Units}
+          />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/client/units/:id/:topic"
+            component={Units}
           />
         </Switch>
       </div>
