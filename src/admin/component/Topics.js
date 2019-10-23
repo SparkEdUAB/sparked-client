@@ -22,8 +22,11 @@ const badgeStyles = { color: '#1de9b6' }
 const StatusBadge = ({ value }) => (
   <Badge label={value} variant="lightest" style={badgeStyles} />
 )
-function TopicsList() {
-  const { loading, data, error } = useQuery(GET_TOPICS)
+function TopicsList({ match }) {
+  const unitId = match.params.id
+  const { loading, data, error } = useQuery(GET_TOPICS, {
+    variables: { unitId },
+  })
   const [createtopic] = useMutation(CREATE_TOPIC)
   const [deletetopic] = useMutation(DELETE_TOPIC)
   const [activePage, setActivePage] = useState(1)
@@ -48,7 +51,7 @@ function TopicsList() {
   }
 
   if (error) return <ErrorPage />
-
+  console.log(data)
   function handleOnClick(data) {
     setModal(true)
     setName(data.name)

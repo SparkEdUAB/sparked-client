@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  {
-    getTopics {
+  query getUnitTopics($unitId: String!) {
+    getTopicsByUnitId(unitId: $unitId) {
       _id
       name
       createdAt

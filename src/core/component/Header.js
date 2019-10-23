@@ -21,7 +21,7 @@ import { useQuery } from '@apollo/react-hooks'
 import USER_INFO from '../queries/user.query'
 import '../styles/header.css'
 
-function SectionHeading({ onToogleSidebar, history, headerTitle }) {
+function SectionHeading({ onToogleSidebar, headerTitle = 'SparkEd' }) {
   const { loading, data, error } = useQuery(USER_INFO)
 
   return (
