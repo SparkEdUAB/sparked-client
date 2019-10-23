@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AppWrapper from '../component/AppWrapper'
 import CoursesList from '../component/Courses'
 import UnitsList from '../component/Units'
-import Page404 from '../../core/component/utils/404Page'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import UsersList from '../component/Users'
 
@@ -36,8 +35,6 @@ export default function AdminRoutes() {
             path="/admin/course/:id"
             component={UnitsList}
           />
-
-          <Route component={Page404} />
         </Switch>
       </AppWrapper>
     </BrowserRouter>

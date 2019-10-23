@@ -21,13 +21,13 @@ import { useQuery } from '@apollo/react-hooks'
 import USER_INFO from '../queries/user.query'
 import '../styles/header.css'
 
-function SectionHeading({ onToogleSidebar, history }) {
+function SectionHeading({ onToogleSidebar, history, headerTitle }) {
   const { loading, data, error } = useQuery(USER_INFO)
 
   return (
     <header className="react-rainbow-admin_header rainbow-position_fixed rainbow-flex rainbow-align_center rainbow-p-horizontal_large rainbow-background-color_white">
       <Link style={{ textDecoration: 'none' }} to="/">
-        <h3>SparkEd</h3>
+        <h3>{headerTitle}</h3>
       </Link>
       <Input
         className="rainbow-m-left_xx-large react-rainbow-admin_header-search"
@@ -68,7 +68,11 @@ function SectionHeading({ onToogleSidebar, history }) {
                 <p className="rainbow-font-size-text_small rainbow-color_gray-3">
                   {data.me.email}
                 </p>
-                <p>[{data.me.role}]</p>
+                <p>
+                  {data.me.role === 'admin' ? (
+                    <Link to="/dashboard/">Dashboard</Link>
+                  ) : null}
+                </p>
               </div>
             ) : null}
           </li>
