@@ -16,6 +16,7 @@ import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
 import GET_TOPICS, { CREATE_TOPIC, DELETE_TOPIC } from '../queries/topics.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
+import { renderPaginatedData } from '../../core/component/utils/utils'
 
 const badgeStyles = { color: '#1de9b6' }
 
@@ -24,6 +25,8 @@ const StatusBadge = ({ value }) => (
 )
 function TopicsList({ match }) {
   const unitId = match.params.id
+
+  const courseId = '5db0b29b4cd2038881beab0e'
   const { loading, data, error } = useQuery(GET_TOPICS, {
     variables: { unitId },
   })
@@ -51,7 +54,7 @@ function TopicsList({ match }) {
   }
 
   if (error) return <ErrorPage />
-  console.log(data)
+
   function handleOnClick(data) {
     setModal(true)
     setName(data.name)
@@ -71,13 +74,14 @@ function TopicsList({ match }) {
 
   function handleCreateTopic() {
     createtopic({
-      variables: { name },
+      variables: { name, unitId, courseId },
       refetchQueries: [{ query: GET_TOPICS }],
     }).then(() => {
       setName('')
       setModal(false)
     })
   }
+
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
@@ -114,6 +118,58 @@ function TopicsList({ match }) {
           Delete
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
+
+        <Table
+          keyField="_id"
+          isLoading={loading}
+          data={renderPaginatedData(
+            data.getTopicsByUnitId,
+            activePage,
+            itemsPerPage
+          )}
+          showCheckboxColumn
+          maxRowSelection={itemsPerPage}
+          selectedRows={['1234qwerty', '1234zxcvbn']}
+          onRowSelection={data => {
+            // To avoid an overflow in states, directly mutate the ids
+            const ids = data.map(unit => unit._id)
+            topicIds = ids
+          }}
+        >
+          <Column
+            header="Name"
+            field="name"
+            component={({ value, row }) => (
+              <Link
+                className="react-rainbow-admin-users_user-id-cell-container"
+                to={`/admin/topic/${row._id}`}
+              >
+                <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
+                  {value}
+                </div>
+              </Link>
+            )}
+          />
+          <Column
+            header="created At"
+            field="createdAt"
+            component={StatusBadge}
+          />
+          <Column header="created By" field="createdBy" />
+          <Column type="action">
+            <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
+            <MenuItem label="Delete" onClick={handleOnDelete} />
+          </Column>
+        </Table>
+        {(data.getTopicsByUnitId.length < 10) &
+        (
+          <Pagination
+            className="rainbow-m_auto"
+            pages={data.getTopicsByUnitId.length / itemsPerPage}
+            activePage={activePage}
+            onChange={handleOnChange}
+          />
+        ) || null}
       </div>
     </div>
   )

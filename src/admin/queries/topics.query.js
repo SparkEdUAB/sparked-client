@@ -15,9 +15,10 @@ export default gql`
 //   unitId: String!
 //   courseId: String!
 export const CREATE_TOPIC = gql`
-  mutation createTopic($name: String!) {
-    addTopic(name: $name) {
+  mutation createTopic($name: String!, $unitId: String!, $courseId: String!) {
+    addTopic(name: $name, unitId: $unitId, courseId: $courseId) {
       name
+      _id
     }
   }
 `
