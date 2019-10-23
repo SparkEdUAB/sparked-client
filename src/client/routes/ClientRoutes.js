@@ -1,9 +1,5 @@
 import React from 'react'
-<<<<<<< HEAD
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-=======
-import { BrowserRouter, Switch } from 'react-router-dom'
->>>>>>> ddc65875adcadc40c289d8f3f30178753bb2435b
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
