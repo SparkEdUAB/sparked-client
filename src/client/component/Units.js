@@ -11,9 +11,11 @@ import { Helmet } from 'react-helmet'
 import GET_UNITS from '../queries/units.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import NoResults from '../../core/component/utils/NoResults'
+import ClientResources from './Resources'
 
 function Units({ match, history }) {
   const courseId = match.params.id
+  const topicId = match.params.topicId
   const { loading, data, error } = useQuery(GET_UNITS, {
     variables: { courseId },
   })
@@ -76,12 +78,12 @@ function Units({ match, history }) {
               </VerticalNavigation>
             </Col>
             <Col xs={12} md={8} lg={9}>
-              Resources
+              <ClientResources topicId={topicId} />
             </Col>
           </Row>
         </Col>
       ) : (
-        <NoResults name="course units" />
+        <NoResults name="resources " />
       )}
     </Fragment>
   )

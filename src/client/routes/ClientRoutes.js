@@ -33,7 +33,7 @@ export default function ClientRoutes() {
           <PrivateRoute
             exact
             isLoggedIn={token ? true : false}
-            path="/client/units/:id/:topic"
+            path="/client/units/:id/:topicId"
             component={Units}
           />
           <Route exact path="/client/uploads" component={FileUploads} />
