@@ -16,18 +16,18 @@ export default function FileUploads() {
 
   function handleFileUpload(e) {
     e.preventDefault()
-    const { files } = e.target
-    console.log(files[0])
+    // const { files } = e.target
+    // console.log(files[0])
 
     singleUpload({
-      variables: { file: files[0] },
+      variables: { file: fileState[0] },
     })
       .then(data => console.log(data))
       .catch(error => console.log(error))
   }
   return (
     <Fragment>
-      <input type="file" required onChange={handleFileUpload} />
+      <input type="file" required onChange={e => setState(e.target.files)} />
       <button onClick={handleFileUpload}>submit</button>
     </Fragment>
   )
