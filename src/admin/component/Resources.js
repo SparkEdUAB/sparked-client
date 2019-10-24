@@ -107,14 +107,10 @@ function ResourceList({ match }) {
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
 
-        {/* <Table
+        <Table
           keyField="_id"
           isLoading={loading}
-          data={renderPaginatedData(
-            data.getResourcesByTopicId,
-            activePage,
-            itemsPerPage
-          )}
+          data={renderPaginatedData(data.getFiles, activePage, itemsPerPage)}
           showCheckboxColumn
           maxRowSelection={itemsPerPage}
           selectedRows={['1234qwerty', '1234zxcvbn']}
@@ -126,14 +122,14 @@ function ResourceList({ match }) {
         >
           <Column
             header="Name"
-            field="name"
+            field="filename"
             component={({ value, row }) => (
               <Link
                 className="react-rainbow-admin-users_user-id-cell-container"
                 to={`/admin/topic/${row._id}`}
               >
                 <div className="react-rainbow-admin-users_user-id-cell rainbow-color_brand">
-                  {value}
+                  {value.replace(/\.[^/.]+$/, '')}
                 </div>
               </Link>
             )}
@@ -143,21 +139,21 @@ function ResourceList({ match }) {
             field="createdAt"
             component={StatusBadge}
           />
-          <Column header="created By" field="createdBy" />
+          <Column header="Uploaded By" field="createdBy" />
           <Column type="action">
             <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
             <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
-        {(data.getResourcesByTopicId.length < 10) &
+        {(data.getFiles.length < 10) &
         (
           <Pagination
             className="rainbow-m_auto"
-            pages={data.getResourcesByTopicId.length / itemsPerPage}
+            pages={data.getFiles.length / itemsPerPage}
             activePage={activePage}
             onChange={handleOnChange}
           />
-        ) || null} */}
+        ) || null}
       </div>
     </div>
   )

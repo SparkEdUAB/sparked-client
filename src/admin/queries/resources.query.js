@@ -5,6 +5,8 @@ export default gql`
     getFiles {
       _id
       filename
+      createdAt
+      createdBy
     }
   }
 `

@@ -49,7 +49,6 @@ export default function FileUploads() {
           {fileSize ? `Total size: ${fileSize}` : 'No file selected'}
         </span>
       </div>
-      {/* <button onClick={handleFileUpload}>Upload</button> */}
       <Button
         variant="neutral"
         onClick={handleFileUpload}
