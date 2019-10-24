@@ -12,7 +12,7 @@ import {
   Input,
   Button,
 } from 'react-rainbow-components'
-import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
+import { IoIosRemoveCircleOutline } from 'react-icons/io'
 import { TiUpload } from 'react-icons/ti'
 import GET_FILES from '../queries/resources.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
@@ -28,7 +28,6 @@ const StatusBadge = ({ value }) => (
 function ResourceList({ match }) {
   const topicId = match.params.id
 
-  const courseId = '5db0b29b4cd2038881beab0e'
   const { loading, data, error } = useQuery(GET_FILES, {
     variables: { topicId },
   })
@@ -87,7 +86,7 @@ function ResourceList({ match }) {
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
-        <FileUploads />
+        <FileUploads topicId={topicId} />
       </Modal>
       <div>
         <Button
@@ -116,7 +115,7 @@ function ResourceList({ match }) {
           selectedRows={['1234qwerty', '1234zxcvbn']}
           onRowSelection={data => {
             // To avoid an overflow in states, directly mutate the ids
-            const ids = data.map(unit => unit._id)
+            const ids = data.map(topic => topic._id)
             topicIds = ids
           }}
         >

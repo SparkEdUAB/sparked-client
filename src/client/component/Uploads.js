@@ -6,14 +6,14 @@ import { TiUpload } from 'react-icons/ti'
 import { Button } from 'react-rainbow-components'
 
 const UPLOAD_FILE = gql`
-  mutation($file: Upload!) {
-    singleUpload(file: $file) {
+  mutation($file: Upload!, $topicId: String) {
+    singleUpload(file: $file, topicId: $topicId) {
       filename
     }
   }
 `
 
-export default function FileUploads() {
+export default function FileUploads({ topicId }) {
   const [fileState, setState] = useState([])
   const [fileSize, setFileSize] = useState(0)
   const [singleUpload] = useMutation(UPLOAD_FILE)
@@ -22,7 +22,7 @@ export default function FileUploads() {
     e.preventDefault()
 
     singleUpload({
-      variables: { file: fileState[0] },
+      variables: { file: fileState[0], topicId },
     })
       .then(data => console.log(data))
       .catch(error => console.log(error))
