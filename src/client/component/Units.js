@@ -83,7 +83,7 @@ function Units({ match, history }) {
           </Row>
         </Col>
       ) : (
-        <NoResults name="resources " />
+        <NoResults name="course units" />
       )}
     </Fragment>
   )

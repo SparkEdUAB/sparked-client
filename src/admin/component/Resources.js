@@ -9,7 +9,6 @@ import {
   MenuItem,
   Badge,
   Modal,
-  Input,
   Button,
 } from 'react-rainbow-components'
 import { IoIosRemoveCircleOutline } from 'react-icons/io'
@@ -35,7 +34,7 @@ function ResourceList({ match }) {
   const [deletetopic] = useMutation(DELETE_RESOURCES)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
-  const [name, setName] = useState('')
+  const [name, setName] = useState('') // eslint-disable-line
   // const [resourceIds, setTopicIds] = useState([])
   const itemsPerPage = 10
   let resourceIds = []

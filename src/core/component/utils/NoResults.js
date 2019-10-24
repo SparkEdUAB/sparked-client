@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card } from 'react-rainbow-components'
 
 export default function NoResults({ name, additionalText = '' }) {
   return (

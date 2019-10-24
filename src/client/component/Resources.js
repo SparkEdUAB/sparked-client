@@ -47,10 +47,12 @@ function ClientResources({ topicId = '1' }) {
           ))}
         </Row>
       ) : (
-        <NoResults
-          name="resources"
-          additionalText="Or try a different topic 👈 on the left"
-        />
+        <Row around="xs">
+          <NoResults
+            name="resources"
+            additionalText="Or try a different topic 👈 on the left"
+          />
+        </Row>
       )}
     </Fragment>
   )
