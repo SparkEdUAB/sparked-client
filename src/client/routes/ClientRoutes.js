@@ -1,15 +1,16 @@
 import React from 'react'
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
 import Units from '../component/Units'
+import FileUploads from '../component/Uploads'
 
 export default function ClientRoutes() {
   const token = localStorage.getItem('token')
   return (
     <BrowserRouter>
-      <Header />
+      <Header headerTitle={'Client Routes'} />
       <div
         style={{
           marginTop: 100,
@@ -35,6 +36,7 @@ export default function ClientRoutes() {
             path="/client/units/:id/:topic"
             component={Units}
           />
+          <Route exact path="/client/uploads" component={FileUploads} />
         </Switch>
       </div>
     </BrowserRouter>

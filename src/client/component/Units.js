@@ -18,7 +18,6 @@ function Units({ match, history }) {
   })
   const [selectedItem, setSelectedItem] = useState('')
   function handleOnSelect(e, selectedItem) {
-    console.log(selectedItem)
     setSelectedItem(selectedItem)
   }
   if (loading) {
