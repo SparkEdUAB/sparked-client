@@ -14,7 +14,7 @@ import {
 } from 'react-rainbow-components'
 import { IoIosRemoveCircleOutline } from 'react-icons/io'
 import { TiUpload } from 'react-icons/ti'
-import GET_FILES from '../queries/resources.query'
+import GET_FILES, { DELETE_RESOURCES } from '../queries/resources.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 import { renderPaginatedData } from '../../core/component/utils/utils'
@@ -32,13 +32,13 @@ function ResourceList({ match }) {
     variables: { topicId },
   })
   //   const [createtopic] = useMutation(CREATE_TOPIC)
-  //   const [deletetopic] = useMutation(DELETE_TOPIC)
+  const [deletetopic] = useMutation(DELETE_RESOURCES)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
-  // const [topicIds, setTopicIds] = useState([])
+  // const [resourceIds, setTopicIds] = useState([])
   const itemsPerPage = 10
-  let topicIds = []
+  let resourceIds = []
 
   function handleOnChange(event, page) {
     setActivePage(page)
@@ -64,13 +64,13 @@ function ResourceList({ match }) {
     setModal(false)
   }
   function handleOnDelete() {
-    if (!topicIds.length) {
+    if (!resourceIds.length) {
       return null
     }
-    // deletetopic({
-    //   variables: { ids: topicIds },
-    //   refetchQueries: [{ query: GET_TOPICS }],
-    // })
+    deletetopic({
+      variables: { ids: resourceIds },
+      refetchQueries: [{ query: GET_FILES, variables: { topicId } }],
+    })
   }
 
   //   function handleCreateTopic() {
@@ -109,14 +109,18 @@ function ResourceList({ match }) {
         <Table
           keyField="_id"
           isLoading={loading}
-          data={renderPaginatedData(data.getFiles, activePage, itemsPerPage)}
+          data={renderPaginatedData(
+            data.getResourcesByTopicId,
+            activePage,
+            itemsPerPage
+          )}
           showCheckboxColumn
           maxRowSelection={itemsPerPage}
           selectedRows={['1234qwerty', '1234zxcvbn']}
           onRowSelection={data => {
             // To avoid an overflow in states, directly mutate the ids
             const ids = data.map(topic => topic._id)
-            topicIds = ids
+            resourceIds = ids
           }}
         >
           <Column
@@ -144,11 +148,11 @@ function ResourceList({ match }) {
             <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
-        {(data.getFiles.length < 10) &
+        {(data.getResourcesByTopicId.length < 10) &
         (
           <Pagination
             className="rainbow-m_auto"
-            pages={data.getFiles.length / itemsPerPage}
+            pages={data.getResourcesByTopicId.length / itemsPerPage}
             activePage={activePage}
             onChange={handleOnChange}
           />
