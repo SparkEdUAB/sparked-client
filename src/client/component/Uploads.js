@@ -2,6 +2,8 @@ import React, { useState, Fragment } from 'react'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 import '../../admin/styles/resources.css'
+import { TiUpload } from 'react-icons/ti'
+import { Button } from 'react-rainbow-components'
 
 const UPLOAD_FILE = gql`
   mutation($file: Upload!) {
@@ -47,7 +49,15 @@ export default function FileUploads() {
           {fileSize ? `Total size: ${fileSize}` : 'No file selected'}
         </span>
       </div>
-      <button onClick={handleFileUpload}>Upload</button>
+      {/* <button onClick={handleFileUpload}>Upload</button> */}
+      <Button
+        variant="neutral"
+        onClick={handleFileUpload}
+        className="rainbow-m-around_medium"
+      >
+        Upload
+        <TiUpload size={'1.5em'} className="rainbow-m-left_medium" />
+      </Button>
     </Fragment>
   )
 }

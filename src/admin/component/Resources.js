@@ -13,25 +13,27 @@ import {
   Button,
 } from 'react-rainbow-components'
 import { IoIosAdd, IoIosRemoveCircleOutline } from 'react-icons/io'
-import GET_TOPICS, { CREATE_TOPIC, DELETE_TOPIC } from '../queries/topics.query'
+import { TiUpload } from 'react-icons/ti'
+import GET_FILES from '../queries/resources.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 import { renderPaginatedData } from '../../core/component/utils/utils'
+import FileUploads from '../../client/component/Uploads'
 
 const badgeStyles = { color: '#1de9b6' }
 
 const StatusBadge = ({ value }) => (
   <Badge label={value} variant="lightest" style={badgeStyles} />
 )
-function TopicsList({ match }) {
-  const unitId = match.params.id
+function ResourceList({ match }) {
+  const topicId = match.params.id
 
   const courseId = '5db0b29b4cd2038881beab0e'
-  const { loading, data, error } = useQuery(GET_TOPICS, {
-    variables: { unitId },
+  const { loading, data, error } = useQuery(GET_FILES, {
+    variables: { topicId },
   })
-  const [createtopic] = useMutation(CREATE_TOPIC)
-  const [deletetopic] = useMutation(DELETE_TOPIC)
+  //   const [createtopic] = useMutation(CREATE_TOPIC)
+  //   const [deletetopic] = useMutation(DELETE_TOPIC)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('')
@@ -66,40 +68,26 @@ function TopicsList({ match }) {
     if (!topicIds.length) {
       return null
     }
-    deletetopic({
-      variables: { ids: topicIds },
-      refetchQueries: [{ query: GET_TOPICS }],
-    })
+    // deletetopic({
+    //   variables: { ids: topicIds },
+    //   refetchQueries: [{ query: GET_TOPICS }],
+    // })
   }
 
-  function handleCreateTopic() {
-    createtopic({
-      variables: { name, unitId, courseId },
-      refetchQueries: [{ query: GET_TOPICS, variables: { unitId, courseId } }],
-    }).then(() => {
-      setName('')
-      setModal(false)
-    })
-  }
+  //   function handleCreateTopic() {
+  //     createtopic({
+  //       variables: { name, topicId, courseId },
+  //       refetchQueries: [{ query: GET_TOPICS, variables: { topicId, courseId } }],
+  //     }).then(() => {
+  //       setName('')
+  //       setModal(false)
+  //     })
+  //   }
 
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>
-        <Input
-          label="Topic"
-          placeholder="Enter your name"
-          type="text"
-          className="rainbow-p-around_medium"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <Button
-          isLoading={false}
-          label={name.length ? 'update' : 'add'}
-          variant="outline-brand"
-          className="rainbow-m-around_medium"
-          onClick={handleCreateTopic}
-        />
+        <FileUploads />
       </Modal>
       <div>
         <Button
@@ -107,8 +95,8 @@ function TopicsList({ match }) {
           className="rainbow-m-around_medium"
           onClick={() => setModal(true)}
         >
-          New
-          <IoIosAdd size={'2em'} />
+          Upload New
+          <TiUpload size={'1.5em'} />
         </Button>
         <Button
           variant="neutral"
@@ -119,11 +107,11 @@ function TopicsList({ match }) {
           <IoIosRemoveCircleOutline size={'2em'} />
         </Button>
 
-        <Table
+        {/* <Table
           keyField="_id"
           isLoading={loading}
           data={renderPaginatedData(
-            data.getTopicsByUnitId,
+            data.getResourcesByTopicId,
             activePage,
             itemsPerPage
           )}
@@ -161,17 +149,17 @@ function TopicsList({ match }) {
             <MenuItem label="Delete" onClick={handleOnDelete} />
           </Column>
         </Table>
-        {(data.getTopicsByUnitId.length < 10) &
+        {(data.getResourcesByTopicId.length < 10) &
         (
           <Pagination
             className="rainbow-m_auto"
-            pages={data.getTopicsByUnitId.length / itemsPerPage}
+            pages={data.getResourcesByTopicId.length / itemsPerPage}
             activePage={activePage}
             onChange={handleOnChange}
           />
-        ) || null}
+        ) || null} */}
       </div>
     </div>
   )
 }
-export default TopicsList
+export default ResourceList
