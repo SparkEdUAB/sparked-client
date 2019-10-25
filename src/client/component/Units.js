@@ -10,9 +10,12 @@ import { useQuery } from '@apollo/react-hooks'
 import { Helmet } from 'react-helmet'
 import GET_UNITS from '../queries/units.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
+import NoResults from '../../core/component/utils/NoResults'
+import ClientResources from './Resources'
 
 function Units({ match, history }) {
   const courseId = match.params.id
+  const topicId = match.params.topicId
   const { loading, data, error } = useQuery(GET_UNITS, {
     variables: { courseId },
   })
@@ -45,40 +48,43 @@ function Units({ match, history }) {
           </Row>
         </Col>
       </Row>
-
-      <Col xs={12}>
-        <Row start="xs">
-          <Col xs={12} md={4} lg={3}>
-            <VerticalNavigation
-              id="vertical-navigation-11"
-              selectedItem={selectedItem}
-              onSelect={handleOnSelect}
-            >
-              {data.getUnitsByCourseId.map(unit => (
-                <VerticalSectionOverflow
-                  key={unit._id}
-                  label={unit.name}
-                  description={`contains topics under ${unit.name}`}
-                >
-                  {unit.topics.slice().map(topic => (
-                    <VerticalItem
-                      name={topic.name}
-                      label={topic.name}
-                      key={topic._id}
-                      onClick={() =>
-                        history.push(`/client/units/${courseId}/${topic._id}`)
-                      }
-                    />
-                  ))}
-                </VerticalSectionOverflow>
-              ))}
-            </VerticalNavigation>
-          </Col>
-          <Col xs={12} md={8} lg={9}>
-            Resources
-          </Col>
-        </Row>
-      </Col>
+      {data.getUnitsByCourseId.length ? (
+        <Col xs={12}>
+          <Row start="xs">
+            <Col xs={12} md={4} lg={3}>
+              <VerticalNavigation
+                id="vertical-navigation-11"
+                selectedItem={selectedItem}
+                onSelect={handleOnSelect}
+              >
+                {data.getUnitsByCourseId.map(unit => (
+                  <VerticalSectionOverflow
+                    key={unit._id}
+                    label={unit.name}
+                    description={`contains topics under ${unit.name}`}
+                  >
+                    {unit.topics.slice().map(topic => (
+                      <VerticalItem
+                        name={topic.name}
+                        label={topic.name}
+                        key={topic._id}
+                        onClick={() =>
+                          history.push(`/client/units/${courseId}/${topic._id}`)
+                        }
+                      />
+                    ))}
+                  </VerticalSectionOverflow>
+                ))}
+              </VerticalNavigation>
+            </Col>
+            <Col xs={12} md={8} lg={9}>
+              <ClientResources topicId={topicId} />
+            </Col>
+          </Row>
+        </Col>
+      ) : (
+        <NoResults name="course units" />
+      )}
     </Fragment>
   )
 }

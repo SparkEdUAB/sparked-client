@@ -6,6 +6,7 @@ import UnitsList from '../component/Units'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import UsersList from '../component/Users'
 import TopicsList from '../component/Topics'
+import ResourceList from '../component/Resources'
 
 export default function AdminRoutes() {
   const token = localStorage.getItem('token')
@@ -41,6 +42,12 @@ export default function AdminRoutes() {
             isLoggedIn={token ? true : false}
             path="/admin/unit/:id"
             component={TopicsList}
+          />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/admin/topic/:id"
+            component={ResourceList}
           />
         </Switch>
       </AppWrapper>

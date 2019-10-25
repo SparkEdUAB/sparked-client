@@ -74,7 +74,7 @@ function UnitsList({ match }) {
   function handleCreateUnit() {
     createunit({
       variables: { name, courseId },
-      refetchQueries: [{ query: GET_UNITS }],
+      refetchQueries: [{ query: GET_UNITS, variables: { courseId } }],
     }).then(() => {
       setName('')
       setModal(false)

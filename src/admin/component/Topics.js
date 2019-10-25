@@ -75,7 +75,7 @@ function TopicsList({ match }) {
   function handleCreateTopic() {
     createtopic({
       variables: { name, unitId, courseId },
-      refetchQueries: [{ query: GET_TOPICS }],
+      refetchQueries: [{ query: GET_TOPICS, variables: { unitId, courseId } }],
     }).then(() => {
       setName('')
       setModal(false)
