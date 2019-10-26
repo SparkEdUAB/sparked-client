@@ -6,6 +6,17 @@ import { Row, Col } from 'react-flexbox-grid'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import GET_RESOURCES from '../../admin/queries/resources.query'
 import NoResults from '../../core/component/utils/NoResults'
+import { GiOpenBook } from 'react-icons/gi'
+import { MdOndemandVideo } from 'react-icons/md'
+import { FaImage } from 'react-icons/fa'
+import { FiFileText } from 'react-icons/fi'
+
+const resourceType = {
+  'application/pdf': <GiOpenBook size={'2em'} />,
+  'video/mp4': <MdOndemandVideo size={'2em'} />,
+  'image/jpeg': <FaImage size={'2em'} />,
+  'text/plain': <FiFileText size={'2em'} />,
+}
 
 function ClientResources({ topicId = '1' }) {
   const { loading, data, error } = useQuery(GET_RESOURCES, {
@@ -34,11 +45,12 @@ function ClientResources({ topicId = '1' }) {
                 }}
                 to={`/client/units/${resource._id}`}
               >
-                <Card>
+                <Card icon={resourceType[resource.type]}>
                   <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
                     <h1 className="rainbow-p-top_large rainbow-font-size-heading_small rainbow-color_dark-1">
                       {resource.filename.replace(/\.[^/.]+$/, '')}
                     </h1>
+                    <span>{}</span>
                   </div>
                 </Card>
               </Link>

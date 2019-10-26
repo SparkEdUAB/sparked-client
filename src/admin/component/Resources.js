@@ -31,7 +31,7 @@ function ResourceList({ match }) {
     variables: { topicId },
   })
   //   const [createtopic] = useMutation(CREATE_TOPIC)
-  const [deletetopic] = useMutation(DELETE_RESOURCES)
+  const [deleteResources] = useMutation(DELETE_RESOURCES)
   const [activePage, setActivePage] = useState(1)
   const [isOpen, setModal] = useState(false)
   const [name, setName] = useState('') // eslint-disable-line
@@ -66,7 +66,7 @@ function ResourceList({ match }) {
     if (!resourceIds.length) {
       return null
     }
-    deletetopic({
+    deleteResources({
       variables: { ids: resourceIds },
       refetchQueries: [{ query: GET_FILES, variables: { topicId } }],
     })

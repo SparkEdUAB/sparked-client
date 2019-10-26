@@ -1,13 +1,13 @@
 import React, { useState, Fragment } from 'react'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
-import '../../admin/styles/resources.css'
 import { TiUpload } from 'react-icons/ti'
 import { Button } from 'react-rainbow-components'
+import '../../admin/styles/resources.css'
 
 const UPLOAD_FILE = gql`
-  mutation($file: Upload!, $topicId: String) {
-    singleUpload(file: $file, topicId: $topicId) {
+  mutation($files: [Upload]!, $topicId: String) {
+    multipleUpload(files: $files, topicId: $topicId) {
       filename
     }
   }
@@ -16,13 +16,13 @@ const UPLOAD_FILE = gql`
 export default function FileUploads({ topicId }) {
   const [fileState, setState] = useState([])
   const [fileSize, setFileSize] = useState(0)
-  const [singleUpload] = useMutation(UPLOAD_FILE)
+  const [multipleUpload] = useMutation(UPLOAD_FILE)
 
   function handleFileUpload(e) {
     e.preventDefault()
 
-    singleUpload({
-      variables: { file: fileState[0], topicId },
+    multipleUpload({
+      variables: { files: fileState, topicId },
     })
       .then(data => console.log(data))
       .catch(error => console.log(error))
@@ -30,6 +30,7 @@ export default function FileUploads({ topicId }) {
 
   function handleFileChange(e) {
     const files = e.target.files
+
     setState(files)
     setFileSize(convertUploadSize(getFileSizes(files)))
   }

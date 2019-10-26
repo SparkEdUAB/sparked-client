@@ -5,6 +5,7 @@ export default gql`
     getResourcesByTopicId(topicId: $topicId) {
       _id
       filename
+      type
       createdAt
       createdBy
     }
@@ -13,7 +14,7 @@ export default gql`
 export const DELETE_RESOURCES = gql`
   mutation deleteResources($ids: [String]!) {
     deleteResources(ids: $ids) {
-      name
+      filename
     }
   }
 `
