@@ -43,14 +43,13 @@ function ClientResources({ topicId = '1' }) {
                 style={{
                   textDecoration: 'none',
                 }}
-                to={`/client/units/${resource._id}`}
+                to={`/client/resourceviewer/${topicId}/${resource._id}`}
               >
                 <Card icon={resourceType[resource.type]}>
                   <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
                     <h1 className="rainbow-p-top_large rainbow-font-size-heading_small rainbow-color_dark-1">
                       {resource.filename.replace(/\.[^/.]+$/, '')}
                     </h1>
-                    <span>{}</span>
                   </div>
                 </Card>
               </Link>

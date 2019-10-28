@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 import { TiUpload } from 'react-icons/ti'
 import { Button } from 'react-rainbow-components'
-import '../../admin/styles/resources.css'
+import '../styles/resources.css'
 
 const UPLOAD_FILE = gql`
   mutation($files: [Upload]!, $topicId: String) {

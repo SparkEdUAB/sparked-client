@@ -17,7 +17,7 @@ import GET_FILES, { DELETE_RESOURCES } from '../queries/resources.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import '../styles/styles.css'
 import { renderPaginatedData } from '../../core/component/utils/utils'
-import FileUploads from '../../client/component/Uploads'
+import FileUploads from './Uploads'
 
 const badgeStyles = { color: '#1de9b6' }
 
