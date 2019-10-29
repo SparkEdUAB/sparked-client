@@ -35,7 +35,7 @@ function ResourceViewer({ match }) {
       </Helmet>
       <Row>
         <Col xs={12} sm={12} md={8} lg={9}>
-          <ResourceFile resourceId={resourceId} />
+          <ResourceFile id={resourceId} />
         </Col>
 
         <Col xs={12} sm={12} md={4} lg={3}>
@@ -80,19 +80,26 @@ function ResourceViewer({ match }) {
   )
 }
 
-export function ResourceFile({ resourceId }) {
+export function ResourceFile({ id }) {
   const { loading, data, error } = useQuery(GET_RESOURCE, {
-    variables: { resourceId },
+    variables: { id },
   })
   if (loading) {
     console.log(loading)
+    return loading
   }
   if (error) {
     console.log(error)
+    return error.message
   }
-  console.log(data && data)
+  console.log(data)
 
-  return 'Testig '
+  return (
+    <img
+      src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
+      alt={data.getResource.filename}
+    />
+  )
 }
 
 function truncateString(txt, length = 30, ending = '...') {
