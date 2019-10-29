@@ -6,8 +6,19 @@ export default gql`
       _id
       filename
       type
+      path
       createdAt
       createdBy
+    }
+  }
+`
+
+export const GET_RESOURCE = gql`
+  query getResource($id: String!) {
+    getResource(id: $id) {
+      path
+      filename
+      _id
     }
   }
 `

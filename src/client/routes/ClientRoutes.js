@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch } from 'react-router-dom'
 import PrivateRoute from '../../core/component/Auth/PrivateRoutes'
 import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
 import Units from '../component/Units'
-import FileUploads from '../component/Uploads'
+import ResourceViewer from '../component/ResourceViewer'
 
 export default function ClientRoutes() {
   const token = localStorage.getItem('token')
@@ -36,7 +36,12 @@ export default function ClientRoutes() {
             path="/client/units/:id/:topicId"
             component={Units}
           />
-          <Route exact path="/client/uploads" component={FileUploads} />
+          <PrivateRoute
+            exact
+            isLoggedIn={token ? true : false}
+            path="/client/resourceviewer/:topicId/:resourceId"
+            component={ResourceViewer}
+          />
         </Switch>
       </div>
     </BrowserRouter>
