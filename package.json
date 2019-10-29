@@ -26,7 +26,8 @@
     "react-rainbow-components": "^1.4.0",
     "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.2",
-    "react-toast-notifications": "^2.2.5"
+    "react-toast-notifications": "^2.2.5",
+    "video-react": "^0.14.1"
   },
   "devDependencies": {
     "babel-jest": "^24.9.0",

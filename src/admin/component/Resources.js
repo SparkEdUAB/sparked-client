@@ -72,16 +72,6 @@ function ResourceList({ match }) {
     })
   }
 
-  //   function handleCreateTopic() {
-  //     createtopic({
-  //       variables: { name, topicId, courseId },
-  //       refetchQueries: [{ query: GET_TOPICS, variables: { topicId, courseId } }],
-  //     }).then(() => {
-  //       setName('')
-  //       setModal(false)
-  //     })
-  //   }
-
   return (
     <div className="rainbow-p-bottom_xx-large">
       <Modal id="modal-1" isOpen={isOpen} onRequestClose={handleOnClose}>

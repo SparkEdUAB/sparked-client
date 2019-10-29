@@ -3,12 +3,14 @@ import { Row, Col } from 'react-flexbox-grid'
 import { Helmet } from 'react-helmet'
 import { useQuery } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
+import { Player } from 'video-react'
 import { Spinner, Card } from 'react-rainbow-components'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import GET_RESOURCES, {
   GET_RESOURCE,
 } from '../../admin/queries/resources.query'
 import NoResults from '../../core/component/utils/NoResults'
+import 'video-react/dist/video-react.css'
 
 function ResourceViewer({ match }) {
   const topicId = match.params.topicId
@@ -80,7 +82,7 @@ function ResourceViewer({ match }) {
   )
 }
 
-export function ResourceFile({ id }) {
+export function ResourceFile({ id = 1 }) {
   const { loading, data, error } = useQuery(GET_RESOURCE, {
     variables: { id },
   })
@@ -95,10 +97,28 @@ export function ResourceFile({ id }) {
   console.log(data)
 
   return (
-    <img
-      src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
-      alt={data.getResource.filename}
-    />
+    <Fragment>
+      {data.type === 'image/png' ? (
+        <img
+          src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
+          alt={data.getResource.filename}
+        />
+      ) : data.type === 'video/quicktime' ? (
+        <Player>
+          <source
+            src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
+          />
+        </Player>
+      ) : (
+        <object
+          data={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
+          type="application/pdf"
+          width="100%"
+          height="100%"
+          aria-label={data.filename}
+        />
+      )}
+    </Fragment>
   )
 }
 
