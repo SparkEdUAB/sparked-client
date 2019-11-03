@@ -131,7 +131,7 @@ function ResourceList({ match }) {
             field="createdAt"
             component={StatusBadge}
           />
-          <Column header="Uploaded By" field="createdBy" />
+          <Column header="Uploaded By" field="createdByName" />
           <Column type="action">
             <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
             <MenuItem label="Delete" onClick={handleOnDelete} />

@@ -8,7 +8,7 @@ export default gql`
       type
       path
       createdAt
-      createdBy
+      createdByName
     }
   }
 `

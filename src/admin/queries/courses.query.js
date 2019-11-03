@@ -9,7 +9,7 @@ export default gql`
       topics {
         name
       }
-      createdBy
+      createdByName
     }
   }
 `

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 import { Card, Spinner } from 'react-rainbow-components'
 import { useQuery } from '@apollo/react-hooks'

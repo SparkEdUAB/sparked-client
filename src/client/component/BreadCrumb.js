@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Breadcrumb, Breadcrumbs } from 'react-rainbow-components'
 import { Row } from 'react-flexbox-grid'
@@ -9,12 +9,12 @@ function BreadCrumb({
   isTopic = true,
   history,
 }) {
-  const links = {
-    course: '/client/courses',
-    unit: '/client/units/id',
-    topic: '/client/units/id/topicId',
-    resource: '/client/resourceviewer/topicId/resourceId',
-  }
+  // const links = {
+  //   course: '/client/courses',
+  //   unit: '/client/units/id',
+  //   topic: '/client/units/id/topicId',
+  //   resource: '/client/resourceviewer/topicId/resourceId',
+  // }
 
   return (
     <Row>

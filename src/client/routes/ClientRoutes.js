@@ -5,7 +5,6 @@ import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
 import Units from '../component/Units'
 import ResourceViewer from '../component/ResourceViewer'
-import BreadCrumb from '../component/BreadCrumb'
 
 export default function ClientRoutes() {
   const token = localStorage.getItem('token')
