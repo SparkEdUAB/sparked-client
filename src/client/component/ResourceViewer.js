@@ -89,23 +89,20 @@ export function ResourceFile({ id = 1 }) {
     variables: { id },
   })
   if (loading) {
-    console.log(loading)
-    return loading
+    return <Spinner />
   }
   if (error) {
-    console.log(error)
     return error.message
   }
-  console.log(data)
 
   return (
     <Fragment>
-      {data.type === 'image/png' ? (
+      {data.type && data.type.includes('image') ? (
         <img
           src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
           alt={data.getResource.filename}
         />
-      ) : data.type === 'video/quicktime' ? (
+      ) : data.type && data.type.includes('video') ? (
         <Player>
           <source
             src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
