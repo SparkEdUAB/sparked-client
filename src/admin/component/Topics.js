@@ -155,7 +155,7 @@ function TopicsList({ match }) {
             field="createdAt"
             component={StatusBadge}
           />
-          <Column header="created By" field="createdBy" />
+          <Column header="created By" field="createdByName" />
           <Column type="action">
             <MenuItem label="Edit" onClick={(e, data) => handleOnClick(data)} />
             <MenuItem label="Delete" onClick={handleOnDelete} />

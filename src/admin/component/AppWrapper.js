@@ -34,7 +34,7 @@ class AppWrapper extends React.Component {
         <Helmet>
           <title>Admin Dashboard</title>
         </Helmet>
-        <Header />
+        <Header headerTitle={'Admin Home '} to="/admin/courses" />
         <div className="dash-wrapper">
           <div className="sidenav">
             <Sidebar

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import '../styles/landing.css'
 import Button from 'react-rainbow-components/components/Button'
 import { Row, Col } from 'react-flexbox-grid'
+import '../styles/landing.css'
 
 function Landing() {
   return (

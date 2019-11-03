@@ -11,6 +11,7 @@ import GET_RESOURCES, {
 } from '../../admin/queries/resources.query'
 import NoResults from '../../core/component/utils/NoResults'
 import 'video-react/dist/video-react.css'
+import BreadCrumb from './BreadCrumb'
 
 function ResourceViewer({ match }) {
   const topicId = match.params.topicId
@@ -35,6 +36,7 @@ function ResourceViewer({ match }) {
       <Helmet>
         <title>ResourceViewer</title>
       </Helmet>
+      <BreadCrumb isTopic={false} isUnit={false} />
       <Row>
         <Col xs={12} sm={12} md={8} lg={9}>
           <ResourceFile id={resourceId} />
@@ -87,23 +89,20 @@ export function ResourceFile({ id = 1 }) {
     variables: { id },
   })
   if (loading) {
-    console.log(loading)
-    return loading
+    return <Spinner />
   }
   if (error) {
-    console.log(error)
     return error.message
   }
-  console.log(data)
 
   return (
     <Fragment>
-      {data.type === 'image/png' ? (
+      {data.type && data.type.includes('image') ? (
         <img
           src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
           alt={data.getResource.filename}
         />
-      ) : data.type === 'video/quicktime' ? (
+      ) : data.type && data.type.includes('video') ? (
         <Player>
           <source
             src={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
@@ -113,8 +112,10 @@ export function ResourceFile({ id = 1 }) {
         <object
           data={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
           type="application/pdf"
-          width="100%"
-          height="100%"
+          style={{
+            height: '100vh',
+            width: '100%',
+          }}
           aria-label={data.filename}
         />
       )}
@@ -124,7 +125,6 @@ export function ResourceFile({ id = 1 }) {
 
 function truncateString(txt, length = 30, ending = '...') {
   if (!txt.length) return
-  //   const lowerText = txt.toLowerCase()
   return txt.substring(0, length - ending.length) + ending
 }
 export default ResourceViewer

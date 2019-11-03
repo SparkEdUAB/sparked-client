@@ -10,10 +10,10 @@ export default function ClientRoutes() {
   const token = localStorage.getItem('token')
   return (
     <BrowserRouter>
-      <Header headerTitle={'Client Routes'} />
+      <Header headerTitle={'Client Home '} to="/client/courses" />
       <div
         style={{
-          marginTop: 100,
+          marginTop: 17,
           padding: '1.5em',
         }}
       >

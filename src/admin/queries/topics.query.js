@@ -6,7 +6,7 @@ export default gql`
       _id
       name
       createdAt
-      createdBy
+      createdByName
     }
   }
 `

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 import { Card, Spinner } from 'react-rainbow-components'
 import { useQuery } from '@apollo/react-hooks'
@@ -23,7 +23,11 @@ function Courses() {
   if (error) return <ErrorPage />
 
   return (
-    <Fragment>
+    <div
+      style={{
+        marginTop: 100,
+      }}
+    >
       <Helmet>
         <title>My Courses</title>
       </Helmet>
@@ -52,7 +56,7 @@ function Courses() {
       ) : (
         <NoResults name="courses" />
       )}
-    </Fragment>
+    </div>
   )
 }
 

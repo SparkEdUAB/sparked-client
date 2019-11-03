@@ -22,6 +22,7 @@ function ClientResources({ topicId = '1' }) {
   const { loading, data, error } = useQuery(GET_RESOURCES, {
     variables: { topicId },
   })
+  console.log(data)
   if (loading) {
     return (
       <div className="rainbow-p-vertical_xx-large">
@@ -47,7 +48,17 @@ function ClientResources({ topicId = '1' }) {
               >
                 <Card icon={resourceType[resource.type]}>
                   <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
-                    <h1 className="rainbow-p-top_large rainbow-font-size-heading_small rainbow-color_dark-1">
+                    {resource.type.includes('image') ? (
+                      <img
+                        src={`${process.env.REACT_APP_SERVER_ADDRESS}/${resource.path}`}
+                        style={{
+                          width: 300,
+                        }}
+                        alt="resource"
+                      />
+                    ) : null}
+                    <br />
+                    <h1 className="">
                       {resource.filename.replace(/\.[^/.]+$/, '')}
                     </h1>
                   </div>
