@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { ProgressIndicator, ProgressStep } from 'react-rainbow-components'
+import { Breadcrumb, Breadcrumbs } from 'react-rainbow-components'
 import { Row } from 'react-flexbox-grid'
 
-function BreadCrumb({ history, location }) {
-  const [step, setStep] = useState('course')
-  function handleOnClick(event, step) {
-    setStep(step)
-    history.push(links[step])
-  }
-
+function BreadCrumb({
+  isCourse = false,
+  isUnit = true,
+  isTopic = true,
+  history,
+}) {
   const links = {
     course: '/client/courses',
     unit: '/client/units/id',
@@ -19,19 +18,29 @@ function BreadCrumb({ history, location }) {
 
   return (
     <Row>
-      <ProgressIndicator
-        currentStepName={step}
-        onClick={handleOnClick}
+      <Breadcrumbs
         style={{
-          marginBottom: -100,
+          marginTop: 100,
           position: 'relative',
+          paddingLeft: 29,
         }}
       >
-        <ProgressStep name="course" label="Courses" />
-        <ProgressStep name="unit" label="Units" />
-        <ProgressStep name="topic" label="Resources" />
-        <ProgressStep name="resource" label="Resource Viewer" />
-      </ProgressIndicator>
+        <Breadcrumb
+          label="Courses"
+          onClick={() => history.push('/client/courses')}
+          disabled={isCourse}
+        />
+        <Breadcrumb
+          label="Units"
+          onClick={() => history.goBack()}
+          disabled={isUnit}
+        />
+        <Breadcrumb
+          label="Topics"
+          onClick={() => history.goBack()}
+          disabled={isTopic}
+        />
+      </Breadcrumbs>
     </Row>
   )
 }

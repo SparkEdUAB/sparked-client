@@ -5,16 +5,16 @@ import Courses from '../component/Courses'
 import Header from '../../core/component/Header'
 import Units from '../component/Units'
 import ResourceViewer from '../component/ResourceViewer'
+import BreadCrumb from '../component/BreadCrumb'
 
 export default function ClientRoutes() {
   const token = localStorage.getItem('token')
   return (
     <BrowserRouter>
       <Header headerTitle={'Client Routes'} />
-      {/* <BreadCrumb /> */}
       <div
         style={{
-          marginTop: 100,
+          marginTop: 17,
           padding: '1.5em',
         }}
       >

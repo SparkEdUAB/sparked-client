@@ -12,10 +12,12 @@ import GET_UNITS from '../queries/units.query'
 import ErrorPage from '../../core/component/utils/ErrorPage'
 import NoResults from '../../core/component/utils/NoResults'
 import ClientResources from './Resources'
+import BreadCrumb from './BreadCrumb'
 
 function Units({ match, history }) {
   const courseId = match.params.id
   const topicId = match.params.topicId
+
   const { loading, data, error } = useQuery(GET_UNITS, {
     variables: { courseId },
   })
@@ -23,6 +25,7 @@ function Units({ match, history }) {
   function handleOnSelect(e, selectedItem) {
     setSelectedItem(selectedItem)
   }
+  const AmIOnTopics = window.location.pathname.split('/').length === 5
   if (loading) {
     return (
       <div className="rainbow-p-vertical_xx-large">
@@ -39,6 +42,7 @@ function Units({ match, history }) {
       <Helmet>
         <title>My Units</title>
       </Helmet>
+      <BreadCrumb isUnit={!AmIOnTopics} />
       <Row>
         <Col xs={12}>
           <Row center="xs">

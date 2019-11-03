@@ -11,6 +11,7 @@ import GET_RESOURCES, {
 } from '../../admin/queries/resources.query'
 import NoResults from '../../core/component/utils/NoResults'
 import 'video-react/dist/video-react.css'
+import BreadCrumb from './BreadCrumb'
 
 function ResourceViewer({ match }) {
   const topicId = match.params.topicId
@@ -35,6 +36,7 @@ function ResourceViewer({ match }) {
       <Helmet>
         <title>ResourceViewer</title>
       </Helmet>
+      <BreadCrumb isTopic={false} isUnit={false} />
       <Row>
         <Col xs={12} sm={12} md={8} lg={9}>
           <ResourceFile id={resourceId} />

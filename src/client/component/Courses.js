@@ -23,7 +23,11 @@ function Courses() {
   if (error) return <ErrorPage />
 
   return (
-    <Fragment>
+    <div
+      style={{
+        marginTop: 100,
+      }}
+    >
       <Helmet>
         <title>My Courses</title>
       </Helmet>
@@ -52,7 +56,7 @@ function Courses() {
       ) : (
         <NoResults name="courses" />
       )}
-    </Fragment>
+    </div>
   )
 }
 
