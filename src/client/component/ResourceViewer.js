@@ -113,8 +113,10 @@ export function ResourceFile({ id = 1 }) {
         <object
           data={`${process.env.REACT_APP_SERVER_ADDRESS}/${data.getResource.path}`}
           type="application/pdf"
-          width="100%"
-          height="100%"
+          style={{
+            height: '100vh',
+            width: '100%',
+          }}
           aria-label={data.filename}
         />
       )}
@@ -124,7 +126,6 @@ export function ResourceFile({ id = 1 }) {
 
 function truncateString(txt, length = 30, ending = '...') {
   if (!txt.length) return
-  //   const lowerText = txt.toLowerCase()
   return txt.substring(0, length - ending.length) + ending
 }
 export default ResourceViewer
